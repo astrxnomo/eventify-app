@@ -19,9 +19,9 @@ return new class extends Migration
             $table->integer('category_id')->unsigned();
             $table->string('name');
             $table->string('description')->nullable();
-            $table->string('img_url')->nullable();
+            $table->string('img')->nullable();
             $table->integer('capacity');
-            $table->decimal('price')->nullable();
+            $table->decimal('price', 10, 2)->nullable();
             $table->dateTime('date');
             $table->timestamp('create_date')->useCurrent();
             $table->timestamp('updated_at')->nullable();

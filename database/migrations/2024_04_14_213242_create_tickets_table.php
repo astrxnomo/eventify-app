@@ -15,7 +15,6 @@ return new class extends Migration
             $table->increments('id');
             $table->integer('event_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->decimal('price');
             $table->timestamp('purchase_date')->useCurrent();
             $table->timestamp('updated_at')->nullable();
             $table->foreign('event_id')->references('id')->on('events');
