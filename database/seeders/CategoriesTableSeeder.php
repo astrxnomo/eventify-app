@@ -28,7 +28,6 @@ class CategoriesTableSeeder extends Seeder
             'Político',
             'Empresarial',
             'Tecnológico',
-            'Medio ambiente',
             'Salud',
             'Moda',
             'Arte',
