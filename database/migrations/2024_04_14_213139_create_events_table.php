@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('location_id')->unsigned();
             $table->integer('category_id')->unsigned();
             $table->string('name');
-            $table->string('description')->nullable();
+            $table->string('description', 1000)->nullable();
             $table->string('img')->nullable();
             $table->integer('capacity');
             $table->decimal('price', 10, 2)->nullable();
