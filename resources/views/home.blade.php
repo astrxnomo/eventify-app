@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+<title>Eventify | Inicio</title>
+
 @section('content')
 
 		<!--welcome-hero start -->
