@@ -15,35 +15,35 @@
         <title>Directory Landing Page</title>
 
         <!-- For favicon png -->
-		<link rel="shortcut icon" type="image/icon" href="{{asset('/logo/favicon.png')}}"/>
+        <link rel="shortcut icon" type="image/icon" href="{{ asset('/logo/favicon.png') }}"/>
 
         <!--font-awesome.min.css-->
-        <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
+        <link rel="stylesheet" href="{{ asset('/css/font-awesome.min.css') }}">
 
         <!--linear icon css-->
-		<link rel="stylesheet" href="{{asset('css/linearicons.css')}}">
+        <link rel="stylesheet" href="{{ asset('/css/linearicons.css') }}">
 
-		<!--animate.css-->
-        <link rel="stylesheet" href="{{asset('css/animate.css')}}">
+        <!--animate.css-->
+        <link rel="stylesheet" href="{{ asset('/css/animate.css') }}">
 
-		<!--flaticon.css-->
-        <link rel="stylesheet" href="{{asset('css/flaticon.css')}}">
+        <!--flaticon.css-->
+        <link rel="stylesheet" href="{{ asset('/css/flaticon.css') }}">
 
-		<!--slick.css-->
-        <link rel="stylesheet" href="{{asset('css/slick.css')}}">
-		<link rel="stylesheet" href="{{asset('css/slick-theme.css')}}">
+        <!--slick.css-->
+        <link rel="stylesheet" href="{{ asset('/css/slick.css') }}">
+        <link rel="stylesheet" href="{{ asset('/css/slick-theme.css') }}">
 
         <!--bootstrap.min.css-->
-        <link rel="stylesheet" href="{{asset('css/bootstrap.min.js')}}">
+        <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
 
-		<!-- bootsnav -->
-		<link rel="stylesheet" href="{{asset('css/bootsnav.css')}}">
+        <!-- bootsnav -->
+        <link rel="stylesheet" href="{{ asset('/css/bootsnav.css') }}" >
 
         <!--style.css-->
-        <link rel="stylesheet" href="{{asset('css/style.css')}}">
+        <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 
         <!--responsive.css-->
-        <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
+        <link rel="stylesheet" href="{{ asset('/css/responsive.css') }}">
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
