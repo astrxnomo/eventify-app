@@ -16,8 +16,8 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
                             <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                                <li class="scroll"><a href="#works">Iniciar Sesion</a></li>
-                                <li class="scroll"><a href="#explore">Registrarme</a></li>
+                                <li class="scroll"><a href="#">Iniciar Sesion</a></li>
+                                <li class="scroll"><a href="#">Registrarme</a></li>
                             </ul><!--/.nav -->
                         </div><!-- /.navbar-collapse -->
                     </div><!--/.container-->

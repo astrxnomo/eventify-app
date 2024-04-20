@@ -87,12 +87,12 @@ button {background: transparent;border: 0;font-size: 12px;}
 html,body{height: 100%;}
 
 [placeholder]:focus::-webkit-input-placeholder {
-    -webkit-transition: opacity 0.3s 0.3s ease;
-    -moz-transition: opacity 0.3s 0.3s ease;
-    -ms-transition: opacity 0.3s 0.3s ease;
-    -o-transition: opacity 0.3s 0.3s ease;
-    transition: opacity 0.3s 0.3s ease;
-    opacity: 0;
+  -webkit-transition: opacity 0.3s 0.3s ease;
+  -moz-transition: opacity 0.3s 0.3s ease;
+  -ms-transition: opacity 0.3s 0.3s ease;
+  -o-transition: opacity 0.3s 0.3s ease;
+  transition: opacity 0.3s 0.3s ease;
+  opacity: 0;
 }
 
 /* section-header */
@@ -120,10 +120,11 @@ html,body{height: 100%;}
 /*-------------------------------------
         2. Header-top
 --------------------------------------*/
-.header-top{border-bottom:1px solid #fff;}
+.header-top{border-bottom:1px solid #f6f8fa;}
 
 .header-top ul li {display: inline-block;}
 
+.header-top-left li,.header-top-right li  {display: inline-block;}
 
 /*.select-opt*/
 .select-opt,.header-top-contact{
@@ -131,6 +132,7 @@ html,body{height: 100%;}
     border-right: 1px solid #f6f8fa;
 }
 .header-top-contact{
+    border-right: 0;
     border-left: 1px solid #f6f8fa;
     font-size: 12px;
 }
@@ -155,8 +157,8 @@ html,body{height: 100%;}
 }
 /*.select-opt*/
 
-.header-top ul li a{
-    color:#373939;
+.header-top-right ul li a{
+    color:#a7b0ba;
     font-size: 12px;
     font-weight: 300;
 }
@@ -197,10 +199,7 @@ nav.navbar.bootsnav ul.nav > li > a {
 }
 nav.navbar.bootsnav ul.nav > li > a {padding:34px 21px;}
 nav.navbar.bootsnav ul.nav > li > a:hover,nav.navbar.bootsnav ul.nav > li > a:focus{color: #ff545a;}
-
-
-
-
+nav.navbar.bootsnav ul.nav > li.active>a {color: #ff545a;}
 
 nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after {
     content: "";
@@ -209,11 +208,10 @@ nav.navbar.bootsnav ul.nav > li.dropdown span {
     font-size: 8px;
     margin-left: 15px;
 }
-.wrap-sticky nav.navbar.bootsnav.sticked ul.nav > li > a{padding:34px 21px;}
 /*.nav li*/
 
 /*.menu-ui-design*/
-.menu-ui-design{overflow-y:scroll;height: 150px;}
+.menu-ui-design{overflow-y:scroll;height: 100px;}
 .menu-ui-design::-webkit-scrollbar {
     width:5px;
 }
@@ -231,10 +229,8 @@ nav.navbar.bootsnav .navbar-toggle {
     background-color: transparent;
     padding: 10px;
     top: 0;
-    text-transform: capitalize;
-
 }
-nav.navbar.bootsnav .navbar-toggle i{color: #ff545a; }
+nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
 /*.navbar-toggle */
 
 /*-------------------------------------
@@ -381,7 +377,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a; }
 /*-------------------------------------
         6. Works
 --------------------------------------*/
-.works{padding: 90px 0 90px;}
+.works{padding: 0 0 90px;}
 .works-content {margin-top: 73px;}
 
 .single-how-works{
@@ -506,15 +502,14 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a; }
     width: 30px;
     height:  28px;
     line-height:  28px;
-    background: #252d32;
     text-align:  center;
     margin-left:  5px;
-    color:  #cbcccd;
+    color:  #ff545a;
 }
 .single-explore-image-icon-box ul li:hover i{color: #267dff;}
 
 .single-explore-txt {
-    padding: 26px 15px 24px 15px;
+    padding: 26px 25px 24px 15px;
 }
 .single-explore-txt.bg-theme-1 .explore-rating{background: #70a9ff;}
 .single-explore-txt.bg-theme-2 .explore-rating{background: #00c61c;}
@@ -549,7 +544,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a; }
     border-left: 1px solid #dde0e4;
     border-right: 1px solid #dde0e4;
 }
-.description {
+.explore-person {
     padding-bottom: 28px;
     border-bottom: 1px solid #e1e5eb;
 }
@@ -558,7 +553,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a; }
     height: 40px;
     border-radius: 50%;
 }
-.description p {font-size: 12px;}
+.explore-person p {font-size: 12px;}
 .explore-open-close-part {
     margin-top: 20px;
 }
@@ -888,17 +883,10 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a; }
     -o-transition:.3s;
     transition: .3s;
 }
-.footer-social a {
-    width: 35px;
-    height: 35px;
-    line-height: 35px;
-    background: #eef2f6;
-    text-align: center;
-    border-radius: 50%;
-}
+
 .footer-social span {margin-right:15px;margin-left: 0;color: #a5adb3;}
 .footer-social span:hover{color: #ff545a;}
-.footer-social a:hover {background:#ff545a;color: #fff;}
+.footer-social a:hover {color: #ff545a;}
 
 /*===============================
     Scroll Top
@@ -944,7 +932,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a; }
     animation-duration:1s;
 }
 @keyframes example {
-    0%   {bottom:0px;}
-    100%  {bottom:7px;}
+    0%   {bottom:-10px;}
+    100%  {bottom:3px;}
 }
 /*========================Thank you=================

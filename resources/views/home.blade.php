@@ -59,20 +59,6 @@
 									<img src="{{asset('images/explore/e1.jpg')}}" alt="explore image">
 									<div class="single-explore-img-info">
 										<button onclick="window.location.href='#'">best rated</button>
-										<div class="single-explore-image-icon-box">
-											<ul>
-												<li>
-													<div class="single-explore-image-icon">
-														<i class="fa fa-arrows-alt"></i>
-													</div>
-												</li>
-												<li>
-													<div class="single-explore-image-icon">
-														<i class="fa fa-bookmark-o"></i>
-													</div>
-												</li>
-											</ul>
-										</div>
 									</div>
 								</div>
 								<div class="single-explore-txt bg-theme-1">
@@ -114,20 +100,6 @@
 									<img src="{{asset('images/explore/e2.jpg')}}" alt="explore image">
 									<div class="single-explore-img-info">
 										<button onclick="window.location.href='#'">featured</button>
-										<div class="single-explore-image-icon-box">
-											<ul>
-												<li>
-													<div class="single-explore-image-icon">
-														<i class="fa fa-arrows-alt"></i>
-													</div>
-												</li>
-												<li>
-													<div class="single-explore-image-icon">
-														<i class="fa fa-bookmark-o"></i>
-													</div>
-												</li>
-											</ul>
-										</div>
 									</div>
 								</div>
 								<div class="single-explore-txt bg-theme-2">
@@ -169,20 +141,6 @@
 									<img src="{{asset('images/explore/e3.jpg')}}" alt="explore image">
 									<div class="single-explore-img-info">
 										<button onclick="window.location.href='#'">best rated</button>
-										<div class="single-explore-image-icon-box">
-											<ul>
-												<li>
-													<div class="single-explore-image-icon">
-														<i class="fa fa-arrows-alt"></i>
-													</div>
-												</li>
-												<li>
-													<div class="single-explore-image-icon">
-														<i class="fa fa-bookmark-o"></i>
-													</div>
-												</li>
-											</ul>
-										</div>
 									</div>
 								</div>
 								<div class="single-explore-txt bg-theme-3">
@@ -224,20 +182,6 @@
 									<img src="{{asset('images/explore/e4.jpg')}}" alt="explore image">
 									<div class="single-explore-img-info">
 										<button onclick="window.location.href='#'">most view</button>
-										<div class="single-explore-image-icon-box">
-											<ul>
-												<li>
-													<div class="single-explore-image-icon">
-														<i class="fa fa-arrows-alt"></i>
-													</div>
-												</li>
-												<li>
-													<div class="single-explore-image-icon">
-														<i class="fa fa-bookmark-o"></i>
-													</div>
-												</li>
-											</ul>
-										</div>
 									</div>
 								</div>
 								<div class="single-explore-txt bg-theme-4">
@@ -279,20 +223,6 @@
 									<img src="{{asset('images/explore/e5.jpg')}}" alt="explore image">
 									<div class="single-explore-img-info">
 										<button onclick="window.location.href='#'">featured</button>
-										<div class="single-explore-image-icon-box">
-											<ul>
-												<li>
-													<div class="single-explore-image-icon">
-														<i class="fa fa-arrows-alt"></i>
-													</div>
-												</li>
-												<li>
-													<div class="single-explore-image-icon">
-														<i class="fa fa-bookmark-o"></i>
-													</div>
-												</li>
-											</ul>
-										</div>
 									</div>
 								</div>
 								<div class="single-explore-txt bg-theme-2">
@@ -334,20 +264,6 @@
 									<img src="{{asset('images/explore/e6.jpg')}}" alt="explore image">
 									<div class="single-explore-img-info">
 										<button onclick="window.location.href='#'">best rated</button>
-										<div class="single-explore-image-icon-box">
-											<ul>
-												<li>
-													<div class="single-explore-image-icon">
-														<i class="fa fa-arrows-alt"></i>
-													</div>
-												</li>
-												<li>
-													<div class="single-explore-image-icon">
-														<i class="fa fa-bookmark-o"></i>
-													</div>
-												</li>
-											</ul>
-										</div>
 									</div>
 								</div>
 								<div class="single-explore-txt bg-theme-5">
