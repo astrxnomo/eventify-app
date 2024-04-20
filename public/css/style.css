@@ -377,7 +377,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
 /*-------------------------------------
         6. Works
 --------------------------------------*/
-.works{padding: 0 0 90px;}
+.works{padding: 117px 0 90px;}
 .works-content {margin-top: 73px;}
 
 .single-how-works{
@@ -576,7 +576,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
 /*-------------------------------------
         8. Reviews
 --------------------------------------*/
-.reviews{padding:117px 0 75px;}
+.reviews{padding:117px 0px 0px 0px;}
 .reviews-content {margin-top:36px;}
 
 /*single-testimonial-box */
