@@ -50,7 +50,7 @@
                         </div>
                     @else
                         <div class="btn-group">
-                            <a href="{{ route('dashboard') }}" class="btn btn-primary text-white fw-semibold">
+                            <a href="/dashboard" class="btn btn-primary text-white fw-semibold">
                                 <i class="bi bi-person-circle"></i>
                                 {{ Auth::user()->name }}
                             </a>
