@@ -66,7 +66,7 @@
                     </div>
                 @endforeach
                 <div class="d-flex align-items-center justify-content-center text-center mb-4">
-                    <a href="/explore" class="btn btn-primary text-white fw-semibold">Ver más eventos</a>
+                    <a href="{{route('events')}}" class="btn btn-primary text-white fw-semibold">Ver más eventos</a>
                 </div>
                 <hr>
             </div>
