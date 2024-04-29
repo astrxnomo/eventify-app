@@ -1,0 +1,12 @@
+.card-link:hover .card {
+    box-shadow: 0 5px 12px 0 #00000055;
+    transition: 0.2s;
+}
+
+.custom-truncate {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
