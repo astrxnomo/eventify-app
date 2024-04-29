@@ -19,7 +19,7 @@
                 <hr>
                 @foreach(range(1, 4) as $card)
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                        <a href="#" class="text-decoration-none text-dark card-link">
+                        <a href="#" class="text-decoration-none text-dark card-hover">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="buy d-flex justify-content-between align-items-center ">
@@ -76,9 +76,10 @@
     <section class="mt-5 mb-4 bg-body-border">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-12 col-sm-6 col-md-4 mb-4">
+
+                <div class="col-12 col-sm-6 col-md-4 mb-4 card-hover">
                     <div class="card text-center">
-                        <div class="card-body card-tutorial">
+                        <div class="card-body">
                             <h4 class="card-title fw-bold">Paso {{$card}}</h4>
                             <p class="card-text">
                                 Aquí va la descripción de cómo unirse a un evento en el paso {{$card}}.
@@ -87,9 +88,9 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-6 col-md-4 mb-4">
+                <div class="col-12 col-sm-6 col-md-4 mb-4 card-hover">
                     <div class="card text-center">
-                        <div class="card-body card-tutorial">
+                        <div class="card-body">
                             <h4 class="card-title fw-bold">Paso {{$card}}</h4>
                             <p class="card-text">
                                 Aquí va la descripción de cómo unirse a un evento en el paso {{$card}}.
@@ -98,9 +99,9 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-6 col-md-4 mb-4">
+                <div class="col-12 col-sm-6 col-md-4 mb-4 card-hover"">
                     <div class="card text-center">
-                        <div class="card-body card-tutorial">
+                        <div class="card-body">
                             <h4 class="card-title fw-bold">Paso {{$card}}</h4>
                             <p class="card-text">
                                 Aquí va la descripción de cómo unirse a un evento en el paso {{$card}}.

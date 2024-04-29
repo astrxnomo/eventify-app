@@ -60,12 +60,12 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li><h6 class="dropdown-header">Eventos</h6></li>
-                                <li><a class="dropdown-item d-flex gap-2 align-items-center" href="dashboard/events"><i class="bi bi-calendar2-plus-fill text-danger"></i> Crear evento</a></li>
-                                <li><a class="dropdown-item d-flex gap-2 align-items-center" href="dashboard/events"><i class="bi bi-calendar2-minus-fill text-danger"></i> Mis eventos</a></li>
+                                <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('dashboard.events') }}"><i class="bi bi-calendar2-plus-fill text-danger"></i> Crear evento</a></li>
+                                <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('dashboard.events') }}"><i class="bi bi-calendar2-minus-fill text-danger"></i> Mis eventos</a></li>
 
                                 <li><hr class="dropdown-divider"></li>
                                 <li><h6 class="dropdown-header">Tickets</h6></li>
-                                <li><a class="dropdown-item d-flex gap-2 align-items-center" href="dashboard/tickets"><i class="bi bi-ticket-fill text-danger"></i> Mis tickets</a></li>
+                                <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('dashboard.tickets') }}"><i class="bi bi-ticket-fill text-danger"></i> Mis tickets</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><h6 class="dropdown-header">Cuenta</h6></li>
                                 <li>
@@ -83,15 +83,15 @@
             </div>
         </header>
 
-        <main class="flex-fill">
+        <main class="flex-fill ">
             @yield('content')
         </main>
 
         <footer class="py-3 border-top">
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center">
-                <li><a href="#" class="nav-link px-2 link-body-emphasis">Inicio</a></li>
-                <li><a href="#" class="nav-link px-2 link-body-emphasis">Explorar</a></li>
-                <li><a href="#" class="nav-link px-2 link-body-emphasis">Nosotros</a></li>
+                <li><a href="{{ route('home') }}" class="nav-link px-2 link-body-emphasis">Inicio</a></li>
+                <li><a href="{{ route('events') }}" class="nav-link px-2 link-body-emphasis">Explorar</a></li>
+                <li><a href="{{ route('events') }}" class="nav-link px-2 link-body-emphasis">Nosotros</a></li>
             </ul>
             <p class="text-center fw-bold fs-5">Eventi<span class="text-primary">fy</span></p>
         </footer>

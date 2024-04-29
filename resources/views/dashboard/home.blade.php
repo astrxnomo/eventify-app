@@ -14,7 +14,7 @@
     </div>
     <div class="row">
         <div class="col-6 mb-5 mb-lg-0">
-            <a href="{{ route('dashboard.events') }}" class="text-decoration-none card-link">
+            <a href="{{ route('dashboard.events') }}" class="text-decoration-none card-hover">
                 <div class="card">
                     <div class="card-body">
                         <div class="text-center">
@@ -29,7 +29,7 @@
             </a>
         </div>
         <div class="col-6 mb-5 mb-lg-0">
-            <a href="{{ route('dashboard.tickets') }}" class="text-decoration-none card-link">
+            <a href="{{ route('dashboard.tickets') }}" class="text-decoration-none card-hover">
                 <div class="card">
                     <div class="card-body">
                         <div class="text-center">

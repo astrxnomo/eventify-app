@@ -17,7 +17,7 @@
             <div class="row">
                 @foreach (range(1,3) as $card)
                 <div class="col-md-3 mb-4">
-                    <a href="#" class="text-decoration-none text-dark card-link ">
+                    <a href="#" class="text-decoration-none text-dark card-hover ">
                         <div class="card ">
                             <div class="card-body">
                                 <div class="buy d-flex justify-content-between align-items-center ">

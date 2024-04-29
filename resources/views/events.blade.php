@@ -9,7 +9,7 @@
             <hr>
             @foreach(range(1, 12) as $card)
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                    <a href="#" class="text-decoration-none text-dark card-link">
+                    <a href="#" class="text-decoration-none text-dark card-hover">
                         <div class="card">
                             <div class="card-body">
                                 <div class="buy d-flex justify-content-between align-items-center ">
@@ -55,10 +55,9 @@
                     </a>
                 </div>
             @endforeach
-            <div class="d-flex align-items-center justify-content-center text-center mb-4">
+            <div class="d-flex align-items-center justify-content-center text-center mb-5">
                 <a href="#" class="btn btn-primary text-white fw-semibold">Ver más eventos</a>
             </div>
-            <hr>
         </div>
     </div>
 </section>
