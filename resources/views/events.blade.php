@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
+<title>Eventify | Explorar</title>
+
 @section('content')
 
 <section class="mt-4">
     <div class="container">
         <div class="row">
-            <h1 class="fw-bold">Explora</h1>
+            <h1 class="fw-bold">Explorar</h1>
             <hr>
             @foreach(range(1, 12) as $card)
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">

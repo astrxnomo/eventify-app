@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+<title>Eventify | Registrarme</title>
+
 @section('content')
 <div class="container mt-5">
     <div class="row justify-content-center">

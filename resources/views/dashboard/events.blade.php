@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+<title>Dashboard | Eventos</title>
+
 @section('content')
 
 @include('dashboard.components.nav')

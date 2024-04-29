@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+<title>Eventify | Dashboard</title>
+
 @section('content')
 
 @include('dashboard.components.nav')

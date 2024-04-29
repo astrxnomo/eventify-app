@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+<title>Dashboard | Tickets</title>
+
 @section('content')
 
 @include('dashboard.components.nav')
