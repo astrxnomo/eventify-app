@@ -22,7 +22,7 @@
         <header class="py-2 bg-body-tertiary border-bottom sticky-top">
             <div class="container">
                 <nav class="d-flex flex-wrap align-items-center justify-content-center ">
-                    <a class="navbar-brand fs-4 fw-bold" href="{{ route('home') }}">
+                    <a class="navbar-brand fs-4 fw-bold ms-3" href="{{ route('home') }}">
                         Eventi<span class="text-primary">fy</span>
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
