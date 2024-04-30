@@ -4,7 +4,7 @@
 
 @section('content')
 
-@include('dashboard.components.nav')
+@include('components.dashboard.nav')
 
 <section class="container mb-5">
     <div class="row mt-5 text-center align-items-end">
