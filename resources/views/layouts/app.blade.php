@@ -32,8 +32,8 @@
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="{{ route('home') }}" class="nav-link px-2 link-body-emphasis">Inicio</a></li>
-                        <li><a href="{{route('events')}}" class="nav-link px-2 link-body-emphasis">Explorar</a></li>
-                        <li><a href="{{route('events')}}" class="nav-link px-2 link-body-emphasis">Nosotros</a></li>
+                        <li><a href="{{route('explore')}}" class="nav-link px-2 link-body-emphasis">Explorar</a></li>
+                        <li><a href="{{route('explore')}}" class="nav-link px-2 link-body-emphasis">Nosotros</a></li>
                     </ul>
 
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-none d-sm-block" role="search">
@@ -90,8 +90,8 @@
         <footer class="py-3 border-top">
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center">
                 <li><a href="{{ route('home') }}" class="nav-link px-2 link-body-emphasis">Inicio</a></li>
-                <li><a href="{{ route('events') }}" class="nav-link px-2 link-body-emphasis">Explorar</a></li>
-                <li><a href="{{ route('events') }}" class="nav-link px-2 link-body-emphasis">Nosotros</a></li>
+                <li><a href="{{ route('explore') }}" class="nav-link px-2 link-body-emphasis">Explorar</a></li>
+                <li><a href="{{ route('explore') }}" class="nav-link px-2 link-body-emphasis">Nosotros</a></li>
             </ul>
             <p class="text-center fw-bold fs-5">Eventi<span class="text-primary">fy</span></p>
         </footer>
@@ -99,3 +99,4 @@
 </body>
 
 </html>
+s

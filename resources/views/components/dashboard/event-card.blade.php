@@ -55,10 +55,10 @@
 
                 <hr>
                 <div class="d-flex flex-row justify-content-between align-items-center">
-                    <button type="button" class="btn btn-success fw-bold col me-2" data-bs-toggle="modal" data-bs-target="#editModal">
+                    <a class="btn btn-success fw-bold col me-2" href="{{ route('dashboard.event-edit') }}">
                         <i class="bi bi-pencil-square me-1"></i>
                         Editar
-                    </button>
+                    </a>
                     <button type="button" class="btn btn-danger fw-bold col" data-bs-toggle="modal" data-bs-target="#deleteModal">
                         <i class="bi bi-trash3 me-1"></i>
                         Borrar
@@ -86,15 +86,29 @@
 
 <!-- Modal Borrar -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Borrar Evento</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Borrar Evento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="deleteForm" action="" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <p>¿Estás seguro de que quieres borrar este evento?</p>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                </button>
 
-                </div>
+                <button type="button" class="btn btn-danger">
+                    <i class="bi bi-trash3 "></i>
+                    Borrar
+                </button>
             </div>
         </div>
+    </div>
 </div>
