@@ -41,4 +41,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //Un usuario va a tener 1 o N tickets
+    public function tickets(){
+        return $this->hasMany('App\Models\ticket');
+    }
+
+    //Un usuario va a tener 1 o N events
+    public function events(){
+        return $this->hasMany('App\Models\event');
+    }
+
+    public function ticket(){
+        return $this->belongsTo('App\Models\ticket');
+    }
 }
