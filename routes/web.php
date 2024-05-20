@@ -2,9 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Views\HomeController;
-use App\Http\Controllers\Views\ExploreController;
-use App\Http\Controllers\Views\DashboardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,13 +18,11 @@ use App\Http\Controllers\Views\DashboardController;
 
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
+Route::view('/', 'home')->name('home');
+Route::view('/explore', 'explore')->name('explore');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/dashboard/events', [DashboardController::class, 'events'])->name('dashboard.events');
-Route::get('/dashboard/event/edit', [DashboardController::class, 'eventEdit'])->name('dashboard.event-edit');
-Route::get('/dashboard/tickets', [DashboardController::class, 'tickets'])->name('dashboard.tickets');
-
-
+Route::view('/dashboard', 'dashboard.home')->name('dashboard')->middleware('auth');
+Route::view('/dashboard/events', 'dashboard.events')->name('dashboard.events')->middleware('auth');
+Route::view('/dashboard/event/edit', 'dashboard.event-edit')->name('dashboard.event-edit')->middleware('auth');
+Route::view('/dashboard/tickets', 'dashboard.tickets')->name('dashboard.tickets')->middleware('auth');
