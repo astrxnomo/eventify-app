@@ -20,10 +20,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('qr_url');
             $table->timestamp('create_date');
-            #$table->unsignedBigInteger('event_name');
-            #$table->foreign('event_name')->references('name')->on('events');
-            #$table->unsignedBigInteger('event_date');
-            #$table->foreign('event_date')->references('date')->on('events');  
+            $table->softDeletes();
+            $table->timestamps();
 
             
         });

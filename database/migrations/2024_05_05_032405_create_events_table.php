@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
 
-            $table->unsignedBigInteger('status_id')->nullable();
-            $table->foreign('status_id')->references('id')->on('status')->onDelete('set null');
+            $table->unsignedBigInteger('statu_id')->nullable();
+            $table->foreign('statu_id')->references('id')->on('status')->onDelete('set null');
 
             $table->unsignedBigInteger('location_id')->nullable();
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('set null');
@@ -34,6 +34,8 @@ return new class extends Migration
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->timestamp('create_date');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
