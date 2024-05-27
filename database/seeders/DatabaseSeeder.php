@@ -10,6 +10,7 @@ use App\Models\location;
 use App\Models\statu;
 use App\Models\event;
 use App\Models\ticket;
+
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Seeder;
 
@@ -18,8 +19,13 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      */
+
     public function run(): void
     {
+
+        // Llamar al seeder de roles
+        $this->call(RolesTableSeeder::class);
+
         // Crear 3 usuarios
         $users = User::factory(3)->create();
         Log::info('Usuarios creados:', $users->toArray());
