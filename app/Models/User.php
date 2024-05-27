@@ -42,6 +42,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /*Método para definir que un usuario está relacionado con un rol*/
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
     //Un usuario va a tener 1 o N tickets
     public function tickets(){
         return $this->hasMany('App\Models\ticket');
