@@ -17,6 +17,10 @@
             <div class="d-flex align-items-center justify-content-center text-center mb-5">
                 <a href="#" class="btn btn-primary text-white fw-semibold">Ver más eventos</a>
             </div>
+            <!--este ciclo me trae cada uno de los eventos definidos que estan en la BD-->
+            @foreach ($events as $event)
+                <h2><a href="{{route('event.detail',$event)}}">{{$event->name}}</a></h2>
+            @endforeach
         </div>
     </div>
 </section>
