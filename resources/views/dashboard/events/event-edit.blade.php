@@ -13,7 +13,7 @@
             </h1>
             <hr class="mt-0">
 
-            
+
         </div>
         <div>
             <form action="{{ route('events.update',$event) }}" method="POST">
@@ -55,8 +55,8 @@
             <a href="{{route('dashboard.events')}}">Regresar</a>
         </div>
     </div>
-    
-    
+
+
 </section>
 
 @endsection
