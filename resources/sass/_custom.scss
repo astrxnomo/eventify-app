@@ -3,7 +3,7 @@
     transition: 0.2s;
 }
 
-.title-truncate {
+.truncate {
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
@@ -13,8 +13,16 @@
 
 .description-truncate {
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.card-img {
+    height: 10rem;
+}
+
+#event-img {
+    height: 25rem;
 }

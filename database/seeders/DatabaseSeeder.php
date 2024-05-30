@@ -7,7 +7,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\category;
 use App\Models\location;
-use App\Models\statu;
+use App\Models\Status;
 use App\Models\event;
 use App\Models\ticket;
 
@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         Log::info('Categorías creadas:', $categories->toArray());
 
         // Crear 5 estados (status)
-        $status = Statu::factory(5)->create();
+        $status = Status::factory(5)->create();
         Log::info('Status creados:', $status->toArray());
 
         // Crear 5 ubicaciones (locations)
@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
         $events = Event::factory(10)->make()->each(function ($event) use ($users, $categories, $status, $locations) {
             $event->user_id = $users->random()->id;
             $event->category_id = $categories->random()->id;
-            $event->statu_id = $status->random()->id;
+            $event->status_id = $status->random()->id;
             $event->location_id = $locations->random()->id;
 
             $event->save();
@@ -65,7 +65,7 @@ class DatabaseSeeder extends Seeder
         Log::info('Tickets creados:', $tickets->toArray());
     }
 
-        
+
 
 
 

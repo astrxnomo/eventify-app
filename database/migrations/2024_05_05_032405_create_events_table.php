@@ -13,19 +13,19 @@ return new class extends Migration
     {
         Schema::create('events',function(Blueprint $table){
             $table->id();
-            
+
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
 
-            $table->unsignedBigInteger('statu_id')->nullable();
-            $table->foreign('statu_id')->references('id')->on('status')->onDelete('set null');
+            $table->unsignedBigInteger('status_id')->nullable();
+            $table->foreign('status_id')->references('id')->on('statuses')->onDelete('set null');
 
             $table->unsignedBigInteger('location_id')->nullable();
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('set null');
- 
+
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
-            
+
             $table->string('name');
             $table->text('description');
             $table->string('img_url');

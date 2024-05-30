@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\TicketController;
 
 
 /*
@@ -19,28 +20,28 @@ use App\Http\Controllers\EventController;
 
 Auth::routes();
 
-
-Route::view('/', 'home')->name('home');
-
-
-Route::get('/explore',[EventController::class,'index'])->name('explore');
-Route::get('/explore/{event}',[EventController::class,'show'])->name('event.detail');
+Route::get('/', [EventController::class, 'showHome'])->name('home');
+Route::get('explore', [EventController::class, 'showExplore'])->name('explore');
+Route::get('event/{event}', [EventController::class, 'show'])->name('event.show');
 
 
 
-Route::view('/dashboard', 'dashboard.home')->name('dashboard')->middleware('auth');
+Route::prefix('dashboard')->middleware('auth')->group(function () {
 
+    Route::view('/', 'dashboard.home')->name('dashboard');
 
+    Route::prefix('events')->group(function () {
+        Route::get('/', [EventController::class, 'showMyEvents'])->name('dashboard.events.index');
+        Route::get('create', [EventController::class, 'create'])->name('dashboard.event.create');
+        Route::post('store', [EventController::class, 'store'])->name('dashboard.event.store');
+        Route::get('edit/{event}', [EventController::class, 'edit'])->name('dashboard.event.edit');
+        Route::put('{event}', [EventController::class, 'update'])->name('dashboard.event.update');
+        Route::delete('{event}', [EventController::class, 'destroy'])->name('dashboard.event.destroy');
+    });
 
-Route::get('/dashboard/events', [EventController::class, 'myEvents'])->middleware('auth')->name('dashboard.events');
-Route::get('/dashboard/events/create',[EventController::class,'create'])->name('dashboard.event-create')->middleware('auth');
-Route::post('/dashboard/events/create',[EventController::class,'store'])->name('events.store');
-Route::get('/explore/{event}/edit',[EventController::class,'edit'])->name('event.edit')->middleware('auth');
-Route::patch('/dashboard/{event}',[EventController::class,'update'])->name('events.update')->middleware('auth');
-Route::delete('/dashboard/{event}',[EventController::class,'destroy'])->name('event.destroy')->middleware('auth');
-
-
-Route::view('/dashboard/event/edit', 'dashboard.event-edit')->name('dashboard.event-edit')->middleware('auth');
-Route::view('/dashboard/tickets', 'dashboard.tickets')->name('dashboard.tickets')->middleware('auth');
-
+    Route::prefix('tickets')->group(function () {
+        Route::get('/', [TicketController::class, 'showMyTickets'])->name('dashboard.tickets.index');
+        Route::post('store', [TicketController::class, 'store'])->name('ticket.store');
+    });
+});
 

@@ -14,7 +14,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js', ])
+
+
 </head>
 
 <body>
@@ -60,17 +62,17 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li><h6 class="dropdown-header">Eventos</h6></li>
-                                <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('dashboard.events') }}"><i class="bi bi-calendar2-plus-fill text-danger"></i> Crear evento</a></li>
-                                <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('dashboard.events') }}"><i class="bi bi-calendar2-minus-fill text-danger"></i> Mis eventos</a></li>
+                                <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('dashboard.events.index') }}"><i class="bi bi-calendar2-plus-fill text-primary"></i> Crear evento</a></li>
+                                <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('dashboard.events.index') }}"><i class="bi bi-calendar2-minus-fill text-primary"></i> Mis eventos</a></li>
 
                                 <li><hr class="dropdown-divider"></li>
                                 <li><h6 class="dropdown-header">Tickets</h6></li>
-                                <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('dashboard.tickets') }}"><i class="bi bi-ticket-fill text-danger"></i> Mis tickets</a></li>
+                                <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('dashboard.tickets.index') }}"><i class="bi bi-ticket-fill text-primary"></i> Mis tickets</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><h6 class="dropdown-header">Cuenta</h6></li>
                                 <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        <i class="bi bi-door-closed-fill me-2 text-danger"></i>{{ __('Cerrar sesión') }}
+                                        <i class="bi bi-door-closed-fill me-2 text-primary"></i>{{ __('Cerrar sesión') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
@@ -96,7 +98,7 @@
             <p class="text-center fw-bold fs-5">Eventi<span class="text-primary">fy</span></p>
         </footer>
     </div>
+
 </body>
 
 </html>
-s

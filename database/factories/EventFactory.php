@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\category;
 use App\Models\location;
-use App\Models\statu;
+use App\Models\Status;
 use App\Models\User;
 use App\Models\event;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -19,8 +19,8 @@ class EventFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'statu_id' => \App\Models\Statu::factory(),  // Asumiendo que tienes una factory para Status
-            'location_id' => \App\Models\Location::factory(),  // Asumiendo que tienes una factory para Location
+            'status_id' => \App\Models\Status::factory(),
+            'location_id' => \App\Models\Location::factory(),
             'category_id' => Category::factory(),
             'name' => $this->faker->sentence,
             'description' => $this->faker->paragraph,

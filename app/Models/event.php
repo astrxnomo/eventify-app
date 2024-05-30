@@ -27,9 +27,9 @@ class event extends Model
         return $this->belongsTo('App\Models\category');
     }
 
-    
+
     public function status(){
-        return $this->belongsTo('App\Models\statu');
+        return $this->belongsTo('App\Models\Status');
     }
 
     protected $fillable=[
