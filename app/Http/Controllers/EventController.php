@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\event;
 use App\Models\location;
 use App\Models\statu;
+use App\Models\Status;
 use App\Models\User;
 
 class EventController extends Controller
@@ -14,24 +15,37 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function showHome()
     {
-        //Permite mostrar los eventos en la vista explore
-        $events=Event::all();
-        
-        return view('explore')->with('events',$events);
+        $events = Event::orderBy('created_at', 'desc')->get();
+        return view('home', compact('events'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
+    public function showMyEvents()
+    {
+        //funcion para vincular a los usuarios con sus respectivos eventos creados
+        // Obtener el usuario autenticado
+        $user = auth()->user();
+        // Obtener los eventos del usuario
+        $events = $user->events;
+
+        // Retornar la vista con los eventos
+        return view('dashboard.events.events-management', compact('events'));
+    }
+
+    public function showExplore()
+    {
+        $events = Event::orderBy('created_at', 'desc')->get();
+        return view('explore', compact('events'));
+    }
+
     public function create()
     {
-        //Va a la vista crear_eventos
-        $status=statu::all();
-        $locations=location::all();
-        $categories=category::all();
-        return view('dashboard.event-create',compact('status','locations','categories'));
+        $categories = Category::all();
+        $event = new Event;
+
+        return view('dashboard.events.event-create', compact('event', 'categories'));
     }
 
     /**
@@ -40,11 +54,10 @@ class EventController extends Controller
     public function store(Request $request)
     {
         //Toma los datos registrados en la vista para almacenarlos en la BD
-        
-        
+
+
         $event=new Event();
         $event->user_id =$request->user()->id;
-        $event->statu_id=$request->input('statu_id');
         $event->location_id=$request->input('location_id');
         $event->category_id=$request->input('category_id');
         $event->name=$request->input('name');
@@ -64,9 +77,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //Muestra los detalles de un evento
-        
-        return view('dashboard.event-detail',['event'=>$event]);
+        return view('event', compact('event'));
     }
 
     /**
@@ -75,9 +86,9 @@ class EventController extends Controller
     public function edit(string $id)
     {
         //Se utiliza para consultar los datos a editar
-        
+
         $event=Event::find($id);
-        $status=statu::all();
+        $status=Status::all();
         $locations=location::all();
         $categories=category::all();
         //return view('dashboard.event-edit')->with('event',$event);
@@ -120,16 +131,4 @@ class EventController extends Controller
         return to_route('dashboard.events')->with('status','event deleted');
     }
 
-    public function myEvents()
-    {
-        //funcion para vincular a los usuarios con sus respectivos eventos creados
-        // Obtener el usuario autenticado
-        $user = auth()->user();
-        // Obtener los eventos del usuario
-        $events = $user->events;
-        
-
-        // Retornar la vista con los eventos
-        return view('dashboard.events', compact('events'));
-    }
 }
