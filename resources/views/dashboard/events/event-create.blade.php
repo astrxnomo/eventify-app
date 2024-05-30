@@ -43,10 +43,10 @@
                                     <label for="eventCategories" class="col-md-4 col-form-label text-md-end fw-semibold">{{ __('Categoria') }}</label>
 
                                     <div class="col-md-6">
-                                        {{-- @foreach($categories as $category)
-                                            <input type="checkbox" class="btn-check" id="category{{ $category->id }}" name="eventCategories[]" value="{{ $category->id }}" {{ in_array($category->id, $event->categories->pluck('id')->toArray()) ? 'checked' : '' }} autocomplete="off">
+                                        @foreach($categories as $category)
+                                            <input type="checkbox" class="btn-check" id="category{{ $category->id }}" name="eventCategories[]" value="{{ $category->id }}" {{ $event->categories ? (in_array($category->id, $event->categories->pluck('id')->toArray()) ? 'checked' : '') : '' }} autocomplete="off">
                                             <label for="category{{ $category->id }}" class="btn btn-sm mb-2">{{ $category->name }}</label>
-                                        @endforeach --}}
+                                        @endforeach
 
                                         <br>
                                         <span id="categoryError" class="d-none text-danger" role="alert">
@@ -97,14 +97,21 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="eventDate" class="col-md-4 col-form-label text-md-end fw-semibold">{{ __('Fecha') }}</label>
+                                    <label for="eventDates" class="col-md-4 col-form-label text-md-end fw-semibold">{{ __('Fecha') }}</label>
 
                                     <div class="col-md-6">
                                         <div class="input-group">
+
                                             <span class="input-group-text"><i class="bi bi-calendar2-event-fill"></i></span>
-                                            <input type="date" class="form-control" id="eventDate" name="eventDate" value="{{ \Carbon\Carbon::parse($event->date)->format('Y-m-d') }}" required>
+                                            <input type="date" class="form-control me-2" id="eventStartDate" name="eventStartDate" value="{{ \Carbon\Carbon::parse($event->date)->format('Y-m-d') }}" required>
+                                            <span class="me-2">→</span>
+                                            <span class="input-group-text"><i class="bi bi-calendar2-event-fill"></i></span>
+                                            <input type="date" class="form-control" id="eventEndDate" name="eventEndDate" value="{{ \Carbon\Carbon::parse($event->date)->format('Y-m-d') }}" required>
+
+
                                         </div>
                                     </div>
+
                                 </div>
 
                                 <div class="row mb-3">

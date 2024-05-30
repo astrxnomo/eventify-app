@@ -33,7 +33,6 @@ return new class extends Migration
             $table->integer('price');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->timestamp('create_date');
             $table->softDeletes();
             $table->timestamps();
         });

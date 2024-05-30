@@ -29,9 +29,9 @@
                     @foreach ($events as $event)
                         @include('components.dashboard.event-card', [
                             'title' => $event->name,
-                            'badges' => $event->categories->pluck('name'),
+                            'category' => $event->category,
                             'image' => $event->image,
-                            'location' => $event->location->country,
+                            'location' => $event->location_id,
                             'date' => \Carbon\Carbon::parse($event->date)->format('d F Y'),
                             'description' => $event->description,
                             'price' => $event->price,

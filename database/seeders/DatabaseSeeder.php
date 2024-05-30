@@ -5,10 +5,10 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\User;
-use App\Models\category;
-use App\Models\location;
+use App\Models\Category;
+use App\Models\Location;
 use App\Models\Status;
-use App\Models\event;
+use App\Models\Event;
 use App\Models\ticket;
 
 use Illuminate\Support\Facades\Log;

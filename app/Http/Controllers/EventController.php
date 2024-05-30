@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\category;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\event;
-use App\Models\location;
+use App\Models\Location;
 use App\Models\statu;
 use App\Models\Status;
 use App\Models\User;
@@ -55,21 +55,36 @@ class EventController extends Controller
     {
         //Toma los datos registrados en la vista para almacenarlos en la BD
 
+        $location = new Location;
+        $location->country = $request->eventCountry;
+        $location->city = $request->eventCity;
+        $location->region = $request->eventRegion;
+        $location->address = $request->eventAddress;
 
-        $event=new Event();
-        $event->user_id =$request->user()->id;
-        $event->location_id=$request->input('location_id');
-        $event->category_id=$request->input('category_id');
-        $event->name=$request->input('name');
-        $event->description=$request->input('descri');
-        $event->img_url=$request->input('url');
-        $event->capacity=$request->input('capacity');
-        $event->price=$request->input('price');
-        $event->start_date=$request->input('inicio');
-        $event->end_date=$request->input('fin');
-        $event->create_date=now();
+
+        $event = new Event;
+        $event->name = $request->eventName;
+        $event->category()->associate($request->input('eventCategory'));
+        $event->start_date = $request->eventStartDate;
+        $event->end_date = $request->eventEndDate;
+        $event->description = $request->eventDescription;
+        $event->capacity = $request->eventCapacity;
+        $event->price = $request->eventPrice;
+        $path = $request->file('eventImage')->store('images', 'public'); $event->img_url = $path;
+        $event->user_id = auth()->id();
+
+        if ($event->capacity > 0) {
+            $event->status_id = 1;
+        } else {
+            $event->status_id = 2;
+        }
+
+        $location->save();
+        $event->location_id = $location->id;
+
         $event->save();
-        return redirect()->route('dashboard.events');
+
+        return redirect()->route('dashboard.events.index')->with('success', 'Event created successfully');
     }
 
     /**
@@ -92,7 +107,7 @@ class EventController extends Controller
         $locations=location::all();
         $categories=category::all();
         //return view('dashboard.event-edit')->with('event',$event);
-        return view('dashboard.event-edit', compact('event','status','locations','categories'));
+        return view('dashboard.events.index', compact('event','status','locations','categories'));
     }
 
     /**
@@ -123,12 +138,13 @@ class EventController extends Controller
      */
     public function destroy(string $id)
     {
-        //Para eliminar un resgistro en base a su id
-        $event=Event::find($id);
+        $event = Event::findOrFail($id);
+        $location = Location::findOrFail($event->location_id);
+
         $event->delete();
-        //return redirect()->route('dashboard.events');
-        //return view('dashboard.events', compact('event'));
-        return to_route('dashboard.events')->with('status','event deleted');
+        $location->delete();
+
+        return redirect()->route('dashboard.events.index')->with('success', 'Event deleted successfully');
     }
 
 }

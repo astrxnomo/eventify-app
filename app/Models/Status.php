@@ -12,7 +12,7 @@ class Status extends Model
 
     //Un estado puede estar en uno varios eventos
     public function event(){
-        return $this->hasMany('App\Models\event');
+        return $this->hasMany('App\Models\Event');
     }
 
     protected $fillable=[
