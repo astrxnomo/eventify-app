@@ -29,7 +29,7 @@ class EventFactory extends Factory
             'price' => $this->faker->randomFloat(2, 10, 100),
             'start_date' => $this->faker->dateTimeBetween('now', '+1 year'),
             'end_date' => $this->faker->dateTimeBetween('+1 year', '+2 years'),
-            'create_date' => now(),
+            //'create_date' => now(),
         ];
     }
 }
