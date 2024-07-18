@@ -43,10 +43,10 @@
                                     <label for="eventCategories" class="col-md-4 col-form-label text-md-end fw-semibold">{{ __('Categoria') }}</label>
 
                                     <div class="col-md-6">
-                                        {{-- @foreach($categories as $category)
-                                            <input type="checkbox" class="btn-check" id="category{{ $category->id }}" name="eventCategories[]" value="{{ $category->id }}" {{ in_array($category->id, $event->categories->pluck('id')->toArray()) ? 'checked' : '' }} autocomplete="off">
+                                        @foreach($categories as $category)
+                                            <input type="radio" class="btn-check" id="category{{ $category->id }}" name="eventCategory" value="{{ $category->id }}" {{ ($event->category_id ?? old('eventCategory')) == $category->id ? 'checked' : '' }} autocomplete="off">
                                             <label for="category{{ $category->id }}" class="btn btn-sm mb-2">{{ $category->name }}</label>
-                                        @endforeach --}}
+                                        @endforeach
 
                                         <br>
                                         <span id="categoryError" class="d-none text-danger" role="alert">

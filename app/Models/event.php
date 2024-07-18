@@ -9,29 +9,29 @@ class event extends Model
 {
     use HasFactory;
 
-    //Un evento puede estar uno o muchos usuarios
-    public function user(){
-        return $this->belongsTo('App\Models\user');
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
-    //Un evento puede tener uno o muchos tickets
-    public function tickets(){
-        return $this->hasMany('App\Models\ticket');
+    public function category(){
+        return $this->belongsTo(Category::class);
     }
 
-    public function locations(){
-        return $this->belongsTo('App\Models\location');
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
     }
 
-    public function categories(){
-        return $this->belongsTo('App\Models\category');
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
 
-
-    public function status(){
-        return $this->belongsTo('App\Models\Status');
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
     }
-
     protected $fillable=[
         'name',
         'description',

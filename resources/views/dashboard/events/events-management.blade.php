@@ -29,13 +29,13 @@
                     @foreach ($events as $event)
                         @include('components.dashboard.event-card', [
                             'title' => $event->name,
-                            'badges' => $event->categories->pluck('name'),
+                            'category' => $event->category->name,
                             'image' => $event->image,
                             'location' => $event->location->country,
-                            'date' => \Carbon\Carbon::parse($event->date)->format('d F Y'),
+                            'date' => \Carbon\Carbon::parse($event->start_date)->format('d F Y'),
                             'description' => $event->description,
                             'price' => $event->price,
-                            'status' => $event->status_id,
+                            'status' => "$event->status_id",
                         ])
                     @endforeach
                 @endif
