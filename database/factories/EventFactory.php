@@ -18,6 +18,7 @@ class EventFactory extends Factory
         return [
             'name' => $this->faker->sentence,
             'description' => implode(' ', $this->faker->paragraphs(15)),
+            'img_url' =>$this->faker->url(),
             'capacity' => $this->faker->numberBetween(10, 100),
             'price' => $this->faker->randomFloat(2, 10000, 100000),
             'user_id' => User::inRandomOrder()->first()->id,

@@ -2,21 +2,13 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Support\Facades\Hash;
+use App\Models\Status;
 use Illuminate\Database\Seeder;
-use App\Models\User;
 
 class UserTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
-        User::create([
-            'name' => 'Test',
-            'email' => 'test@test.com',
-            'password' => Hash::make('123456789'),
-        ]);
+        
     }
 }

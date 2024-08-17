@@ -29,17 +29,10 @@
                     @foreach ($events as $event)
                         @include('components.dashboard.event-card', [
                             'title' => $event->name,
-<<<<<<< HEAD
-                            'category' => $event->category,
-                            'image' => $event->image,
-                            'location' => $event->location_id,
-                            'date' => \Carbon\Carbon::parse($event->date)->format('d F Y'),
-=======
                             'category' => $event->category->name,
                             'image' => $event->image,
                             'location' => $event->location->country,
                             'date' => \Carbon\Carbon::parse($event->start_date)->format('d F Y'),
->>>>>>> 3460b7e9b86d7c45726d63834283df8275e5026d
                             'description' => $event->description,
                             'price' => $event->price,
                             'status' => "$event->status_id",

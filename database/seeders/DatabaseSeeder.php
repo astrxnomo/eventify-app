@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Event;
 use App\Models\Location;
 use App\Models\User;
+use App\Models\ticket;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->count(5)->create();
         Location::factory()->count(30)->create();
         Event::factory()->count(30)->create();
+        ticket::factory()->count(10)->create();
 
     }
 }
