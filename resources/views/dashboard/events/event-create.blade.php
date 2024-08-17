@@ -44,7 +44,11 @@
 
                                     <div class="col-md-6">
                                         @foreach($categories as $category)
+<<<<<<< HEAD
                                             <input type="checkbox" class="btn-check" id="category{{ $category->id }}" name="eventCategories[]" value="{{ $category->id }}" {{ $event->categories ? (in_array($category->id, $event->categories->pluck('id')->toArray()) ? 'checked' : '') : '' }} autocomplete="off">
+=======
+                                            <input type="radio" class="btn-check" id="category{{ $category->id }}" name="eventCategory" value="{{ $category->id }}" {{ ($event->category_id ?? old('eventCategory')) == $category->id ? 'checked' : '' }} autocomplete="off">
+>>>>>>> 3460b7e9b86d7c45726d63834283df8275e5026d
                                             <label for="category{{ $category->id }}" class="btn btn-sm mb-2">{{ $category->name }}</label>
                                         @endforeach
 

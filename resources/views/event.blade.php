@@ -43,7 +43,7 @@
                     <div class="row">
                         <div class="col badge-container">
                             <span class="badge bg-secondary-subtle text-secondary-emphasis rounded-pill mb-2 ">
-                                {{ $event->categories }}
+                                {{ $event->category->name }}
                             </span>
                         </div>
                     </div>
@@ -61,12 +61,12 @@
                         <div class="d-flex align-items-center flex-wrap">
                             <span class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill mb-2 me-1">
                                 <i class="bi bi-geo-alt-fill mt-1"></i>
-                                {{-- <span>{{ $event->location_id}}, {{ $event->location->region}}, {{ $event->location->city}}</span> --}}
+                                <span>{{ $event->location->country}}, {{ $event->location->region}}, {{ $event->location->city}}</span>
                             </span>
 
                             <span class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill mb-2">
                                 <i class="bi bi-map-fill me-1"></i>
-                                {{-- <span>{{ $event->location->address}}</span> --}}
+                                <span>{{ $event->location->address}}</span>
                             </span>
                         </div>
 

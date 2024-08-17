@@ -14,13 +14,13 @@
             @foreach ($events as $event)
                 @include('components.event-card', [
                     'title' => $event->name,
-                    'category' => $event->category,
+                    'category' => $event->category->name,
                     'image' => $event->image,
-                    'location' => $event->location_id,
-                    'date' => \Carbon\Carbon::parse($event->date)->format('d F Y'),
+                    'location' => $event->location->country,
+                    'date' => \Carbon\Carbon::parse($event->start_date)->format('d F Y'),
                     'description' => $event->description,
                     'price' => $event->price,
-                    'status' => $event->status_id,
+                    'status' => "$event->status_id",
                 ])
             @endforeach
             <div class="d-flex align-items-center justify-content-center text-center mb-5">

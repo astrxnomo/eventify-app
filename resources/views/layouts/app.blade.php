@@ -16,6 +16,13 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js', ])
 
+    @if (Route::currentRouteName() == 'dashboard.event.edit' || Route::currentRouteName() == 'dashboard.event.create')
+        @vite('resources/js/event-data-preview.js')
+    @endif
+
+    @if (Route::currentRouteName() == 'event.show')
+        @vite('resources/js/ticket-purchase.js')
+    @endif
 
 </head>
 
