@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\Event;
 use App\Models\Location;
 use App\Models\User;
@@ -19,6 +20,18 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoryTableSeeder::class);
         $this->call(StatusTableSeeder::class);
         $this->call(UserTableSeeder::class);
+
+
+        // Crear un usuario administrador base
+        $adminRole = Role::where('name', 'admin')->first();
+
+        $adminUser = User::firstOrCreate([
+            'name' => 'Admin User',
+            'email' => 'admin@example.com',
+            'password' => 'password',
+            'role_id' => $adminRole->id,
+        ]);
+        Log::info('Usuario administrador creado:', $adminUser->toArray());
 
 
         User::factory()->count(5)->create();
