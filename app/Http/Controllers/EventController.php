@@ -107,9 +107,10 @@ class EventController extends Controller
         $status=Status::all();
         $locations=location::all();
         $categories=category::all();
+        $location = Location::find($event->location_id);
         //return view('dashboard.event-edit')->with('event',$event);
         //return view('dashboard.events.index', compact('event','status','locations','categories'));
-        return view('dashboard.events.event-edit',compact('event','status','locations','categories'));;
+        return view('dashboard.events.event-edit',compact('event','status','locations','categories','location'));;
     }
 
     /**

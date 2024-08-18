@@ -17,12 +17,7 @@
         </div>
         <div>
             <form action="{{ route('dashboard.event.update',$event) }}" method="POST">
-                @csrf @method('PATCH')
-                <select name="location_id" id="location" >
-                    @foreach ($locations as $location)
-                        
-                    @endforeach
-                </select
+                
                 
                 
         
