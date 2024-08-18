@@ -168,12 +168,16 @@ class EventController extends Controller
     public function destroy(string $id)
     {
         $event = Event::findOrFail($id);
-        $location = Location::findOrFail($event->location_id);
+        //$location = Location::findOrFail($event->location_id);
+
+        //$event->delete();
+        //$location->delete();
+
+        //return redirect()->route('dashboard.events.index')->with('success', 'Event deleted successfully');
 
         $event->delete();
-        $location->delete();
 
-        return redirect()->route('dashboard.events.index')->with('success', 'Event deleted successfully');
+        return redirect()->route('dashboard.events.index');
     }
 
 }
