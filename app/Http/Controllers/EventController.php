@@ -101,12 +101,15 @@ class EventController extends Controller
     public function edit(string $id)
     {
         //Se utiliza para consultar los datos a editar
-
+        
         $event=Event::find($id);
+        
         $status=Status::all();
+        $locations=location::all();
         $categories=category::all();
         //return view('dashboard.event-edit')->with('event',$event);
-        return view('dashboard.events.index', compact('event','status','locations','categories'));
+        //return view('dashboard.events.index', compact('event','status','locations','categories'));
+        return view('dashboard.events.event-edit',compact('event','status','locations','categories'));;
     }
 
     /**
@@ -115,20 +118,47 @@ class EventController extends Controller
     public function update(Request $request, string $id)
     {
         //Se hace el update en la BD
+        //Se hace el update en la BD
         $event=Event::find($id);
         $event->user_id =$request->user()->id;
-        $event->statu_id=$request->input('statu_id');
-        $event->location_id=$request->input('location_id');
-        $event->category_id=$request->input('category_id');
-        $event->name=$request->input('name');
-        $event->description=$request->input('descri');
-        $event->img_url=$request->input('url');
-        $event->capacity=$request->input('capacity');
-        $event->price=$request->input('price');
-        $event->start_date=$request->input('inicio');
-        $event->end_date=$request->input('fin');
+        $event->status_id=$request->input("eventStatus");
+        $event->category_id=$request->input("eventCategory");
+        $event->name=$request->input("eventName");
+        $event->description=$request->input("eventDescription");
+        $event->img_url=$request->input("eventImage");
+        $event->capacity=$request->input("eventCapacity");
+        $event->price=$request->input("eventPrice");
+        $event->start_date=$request->input("eventStartDate");
+        $event->end_date=$request->input("eventEndDate");
+        
+         // Find or create the associated location
+        $location = Location::find($event->location_id);
+
+        if (!$location) {
+            $location = new Location();
+        }
+
+        // Update location fields
+        $location->country = $request->input("eventCountry");
+        $location->region = $request->input("eventRegion");
+        $location->city = $request->input("eventCity");
+        $location->address = $request->input("eventAddress");
+
+        // Save the location
+        $location->save();
+
+        // Associate the updated location with the event
+        $event->location_id = $location->id;
+
+        // Save the event
         $event->save();
-        return redirect()->route('dashboard.events');
+
+
+
+
+
+        
+        return redirect()->route('dashboard.events.index');
 
     }
 

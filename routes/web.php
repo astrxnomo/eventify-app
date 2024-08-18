@@ -45,7 +45,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::get('create', [EventController::class, 'create'])->name('dashboard.event.create');
         Route::post('store', [EventController::class, 'store'])->name('dashboard.event.store');
         Route::get('edit/{event}', [EventController::class, 'edit'])->name('dashboard.event.edit');
-        Route::put('{event}', [EventController::class, 'update'])->name('dashboard.event.update');
+        Route::patch('{event}', [EventController::class, 'update'])->name('dashboard.event.update');
         Route::delete('{event}', [EventController::class, 'destroy'])->name('dashboard.event.destroy');
     });
 

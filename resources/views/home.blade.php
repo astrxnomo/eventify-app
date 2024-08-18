@@ -21,17 +21,17 @@
             <div class="row">
                 <hr>
                 @foreach($events->take(4) as $event)
-                    @include('components.event-card', [
-                        'title' => $event->name,
-                        'category' => $event->category->name,
-                        'image' => $event->image,
-                        'location' => $event->location->country,
-                        'date' => \Carbon\Carbon::parse($event->start_date)->format('d F Y'),
-                        'description' => $event->description,
-                        'price' => $event->price,
-                        'status' => "$event->status_id",
-                    ])
-                @endforeach
+                @include('components.event-card', [
+                    'title' => $event->name,
+                    'category' => $event->category ? $event->category->name : 'Sin categoría',
+                    'image' => $event->img_url,  // Asegúrate de usar img_url aquí
+                    'location' => $event->location ? $event->location->country : 'Sin ubicación',
+                    'date' => \Carbon\Carbon::parse($event->start_date)->format('d F Y'),
+                    'description' => $event->description,
+                    'price' => $event->price,
+                    'status' => "$event->status_id",
+                ])
+            @endforeach
                 <div class="d-flex align-items-center justify-content-center text-center mb-4">
                     <a href="{{route('explore')}}" class="btn btn-primary text-white fw-semibold">
                         Ver más eventos
