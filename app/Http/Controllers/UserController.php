@@ -42,7 +42,8 @@ class UserController extends Controller
         $user = new User();
         $user->name = $request->name; 
         $user->email = $request->email; 
-        $user->password = $request->password;
+        // Hashear la contraseña antes de guardarla
+        $user->password = Hash::make($request->password);
         $user->role_id = $request->role_id;
         //$user->Role()->associate($request->input('new_role'));
         $user->save();
@@ -78,7 +79,10 @@ class UserController extends Controller
         $user = User::find($id);
         $user->name = $request->name; 
         $user->email = $request->email; 
-        $user->password = $request->password;
+        // Solo hashear y actualizar la contraseña si se ha proporcionado una nueva
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
         $user->role_id = $request->role_id;
         $user->save();
         return redirect()->route('users.index');

@@ -8,6 +8,7 @@ use App\Models\Location;
 use App\Models\User;
 use App\Models\ticket;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,8 +28,8 @@ class DatabaseSeeder extends Seeder
 
         $adminUser = User::firstOrCreate([
             'name' => 'Admin User',
-            'email' => 'admin@example.com',
-            'password' => 'password',
+            'email' => 'admin@admin.com',
+            'password' => Hash::make('password'), // Password encriptada
             'role_id' => $adminRole->id,
         ]);
         Log::info('Usuario administrador creado:', $adminUser->toArray());
