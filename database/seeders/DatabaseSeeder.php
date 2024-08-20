@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\ticket;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class DatabaseSeeder extends Seeder
 {
