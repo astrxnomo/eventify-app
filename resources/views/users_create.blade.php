@@ -7,7 +7,7 @@
 <section class="container mb-5">
 
     <div class="container text-center">
-        <form action="{{route('users.store')}}" method="post">
+        <form id="userForm" action="{{route('users.store')}}" method="post">
             @csrf
             <div class="mb-3">
                 <label for="nom" class="form-label">Nombre:
@@ -35,8 +35,11 @@
             </div>
                 <input type="submit" class="btn btn-success btn-block" name="save" value="Guardar">
         </form>
+        <div id="errorMessages"></div>
     </div>
 
-
 </section>
+
+<script src="{{ asset('js/userFormValidation.js') }}"></script>
+
 @endsection

@@ -6,9 +6,8 @@
 
 <section class="container mb-5">
 
-
     <div class="container text-center">
-        <form action="{{route('users.update',$user->id)}}" method="post">
+        <form id="userForm" action="{{route('users.update',$user->id)}}" method="post">
             @method('PUT')
             @csrf
             <div class="mb-3">
@@ -39,7 +38,11 @@
             </div>
                 <input type="submit" class="btn btn-success btn-block" name="save" value="Editar">
         </form>
+        <div id="errorMessages"></div>
     </div>
 
 </section>
+
+<script src="{{ asset('js/userFormValidation.js') }}"></script>
+
 @endsection
