@@ -18,7 +18,7 @@ class Role
     public function handle(Request $request, Closure $next, $roles): Response
     {
 
-        $newRol = explode('admin|user', $roles);
+        $newRol = explode('|', $roles);
         $roleName = strtolower($request->user()->role->label);
         if (!in_array($roleName, $newRol))
             return abort(403,__('Unauthorized'));
