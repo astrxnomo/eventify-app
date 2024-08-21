@@ -12,7 +12,7 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        Role::firstOrCreate(['name' => 'admin', 'label' => 'Administrator', 'description' => 'System Administrator']);
-        Role::firstOrCreate(['name' => 'user', 'label' => 'User', 'description' => 'Regular User']);
+        Role::firstOrCreate(['name' => 'Administrator', 'label' => 'admin', 'description' => 'System Administrator']);
+        Role::firstOrCreate(['name' => 'User', 'label' => 'user', 'description' => 'Regular User']);
     }
 }
