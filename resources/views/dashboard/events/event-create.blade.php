@@ -20,7 +20,7 @@
                 <div class="col-12 col-md-8 mb-4">
                     <div class="card">
                         <div class="card-body">
-                            <form method="POST" action="{{ route('dashboard.event.store') }}" enctype="multipart/form-data">
+                            <form id="EventForm" method="POST" action="{{ route('dashboard.event.store') }}" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="row mb-3">
@@ -202,5 +202,7 @@
         </div>
     </div>
 </section>
+
+<script src="{{ asset('js/eventFormValidation.js') }}"></script>
 
 @endsection

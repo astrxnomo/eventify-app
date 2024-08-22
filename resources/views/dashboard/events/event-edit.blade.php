@@ -28,7 +28,7 @@
                 <div class="col-12 col-md-8 mb-4">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('dashboard.event.update',$event) }}" method="POST">
+                            <form id="EventForm" action="{{ route('dashboard.event.update',$event) }}" method="POST">
                                 @csrf @method('PATCH')
             
                                 <div class="row mb-3">
@@ -230,5 +230,7 @@
 
 
 </section>
+
+<script src="{{ asset('js/eventFormValidation.js') }}"></script>
 
 @endsection
