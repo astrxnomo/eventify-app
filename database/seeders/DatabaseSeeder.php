@@ -23,23 +23,9 @@ class DatabaseSeeder extends Seeder
         $this->call(StatusTableSeeder::class);
         $this->call(UserTableSeeder::class);
 
-
-        // Crear un usuario administrador base
-        $adminRole = Role::where('name', 'admin')->first();
-
-        $adminUser = User::firstOrCreate([
-            'name' => 'Admin User',
-            'email' => 'admin@admin.com',
-            'password' => Hash::make('password'), // Password encriptada
-            'role_id' => $adminRole->id,
-        ]);
-        Log::info('Usuario administrador creado:', $adminUser->toArray());
-
-
         User::factory()->count(5)->create();
         Location::factory()->count(30)->create();
         Event::factory()->count(30)->create();
-        ticket::factory()->count(10)->create();
 
     }
 }
