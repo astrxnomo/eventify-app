@@ -24,7 +24,7 @@
                     </div>
                 </div>
 
-                <img class="card-img img-fluid" src="{{ asset('storage/' . $image) }}" alt="Imagen del evento">
+                <img class="card-img img-fluid" src="{{ asset('storage/' . $event->img_url) }}" alt="Imagen del evento">
 
                 <div class="d-flex justify-content-between mt-3">
                     <div class="d-flex align-items-center">

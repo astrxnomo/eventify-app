@@ -28,7 +28,7 @@
                 <div class="col-12 col-md-8 mb-4">
                     <div class="card">
                         <div class="card-body">
-                            <form id="EventForm" action="{{ route('dashboard.event.update',$event) }}" method="POST">
+                            <form id="EventForm" action="{{ route('dashboard.event.update',$event) }}" method="POST" enctype="multipart/form-data">
                                 @csrf @method('PATCH')
             
                                 <div class="row mb-3">
@@ -116,7 +116,7 @@
                                     <label for="eventImage" class="col-md-4 col-form-label text-md-end fw-semibold">{{ __('Imagen') }}</label>
 
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" id="eventImage" name="eventImage" value="{{$event['img_url']}}" >
+                                        <input type="file" class="form-control" id="eventImage" name="eventImage" value="{{$event['img_url']}}" >
                                     </div>
                                 </div>
 

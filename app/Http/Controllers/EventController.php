@@ -78,6 +78,10 @@ class EventController extends Controller
         } else {
             $event->status_id = 2;
         }
+        if ($request->hasFile('eventImage')) {
+            $path = $request->file('eventImage')->store('events', 'public'); // Guarda la imagen en 'storage/app/public/events'
+            $event->img_url = $path; // Guarda el nombre del archivo en la base de datos
+        }
 
         $location->save();
         $event->location_id = $location->id;
@@ -137,6 +141,11 @@ class EventController extends Controller
 
         if (!$location) {
             $location = new Location();
+        }
+
+        if ($request->hasFile('eventImage')) {
+            $path = $request->file('eventImage')->store('events', 'public'); // Guarda la imagen en 'storage/app/public/events'
+            $event->img_url = $path; // Guarda el nombre del archivo en la base de datos
         }
 
         // Update location fields
