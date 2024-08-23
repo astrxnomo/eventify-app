@@ -14,16 +14,14 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('event_id');
-            $table->foreign('event_id')->references('id')->on('events');  
-            $table->string('name');
-            $table->string('qr_url');
-            $table->timestamp('create_date');
+            $table->integer('quantity');
             $table->softDeletes();
             $table->timestamps();
 
-            
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('event_id')->references('id')->on('events');
+
         });
     }
 

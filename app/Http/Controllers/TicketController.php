@@ -14,7 +14,7 @@ class TicketController extends Controller
 
     public function showMyTickets()
     {
-        $tickets = Ticket::where('user_id', auth()->id())->get();
+        $tickets = Ticket::where('user_id', auth()->id())->orderBy('created_at', 'desc')->get();
         return view ('dashboard.tickets.tickets-management', compact('tickets'));
     }
 
@@ -32,7 +32,27 @@ class TicketController extends Controller
 
     public function store(Request $request)
     {
+        $event = Event::find($request->event_id);
 
+        if ($event->capacity < $request->quantity || $event->capacity == 0) {
+            return redirect()->back()->with('error', 'No hay tickets disponibles');
+        }
+
+        $ticket = new Ticket;
+        $ticket->quantity = $request->quantity;
+        $ticket->event_id = $request->event_id;
+        $ticket->user_id = auth()->id();
+        $ticket->save();
+
+        $event->capacity -= $request->quantity;
+
+        if ($event->capacity == 0) {
+            $event->status_id = 2;
+        }
+
+        $event->save();
+
+        return redirect()->back()->with('success', 'Ticket comprado con éxito! Gracias por tu compra');
     }
     /**
      * Display the specified resource.

@@ -1,82 +1,99 @@
 <div class="col-md-6 col-lg-3 mb-4">
-    <a href="{{ $url }}" class="text-decoration-none text-dark card-hover">
-        <div class="card">
-            <div class="card-body">
-                <div class="buy d-flex justify-content-between align-items-center">
-                    <h4 class="card-title fw-bold title-truncate">{{ $title }}</h4>
-                </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="card-title fw-bold truncate fs-4">
+                    {{ $title }}
+                </h2>
+            </div>
 
-                <div class="row">
-                    <div class="col mb-2">
-                        @foreach($badges as $badge)
-                            <span class="badge bg-secondary-subtle text-secondary-emphasis rounded-pill">{{ $badge }}</span>
-                        @endforeach
-                    </div>
-                </div>
-
-                <img class="card-img" src="{{ $image }}" alt="Vans">
-
-                <div class="d-flex justify-content-between mt-3">
-                    <div class="d-flex align-items-center">
-                        <span class="badge bg-primary-subtle border border-primary-subtle text-primary-emphasis rounded-pill mb-2">
-                            <i class="bi bi-geo-alt-fill me-1"></i>
-                            {{ $location }}
-                        </span>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <span class="badge bg-primary-subtle border border-primary-subtle text-primary-emphasis rounded-pill mb-2">
-                            <i class="bi bi-calendar2-event-fill me-1"></i>
-                            {{ $date }}
-                        </span>
-                    </div>
-                </div>
-
-                <hr class="mt-1">
-
-                <div class="buy d-flex justify-content-between align-items-center mt-3">
-                    <h4 class="card-title fw-bold">
-                        Datos de compra
-                    </h4>
-                </div>
-
-                <div class="row">
-                    <div class="col mb-2">
-                        <span class="badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill mb-2">
-                            <i class="bi bi-person-square me-1"></i>
-                            {{ auth()->user()->name }}
-                        </span>
-                        <span class="badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill mb-2">
-                            <i class="bi bi-calendar2-event-fill me-1"></i>
-                            {{ $purchaseDate }}
-                        </span>
-                        <span class="badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill mb-2">
-                            <i class="bi bi-ticket-fill me-1"></i>
-                            x{{ $ticketCount }} Ticket
-                        </span>
-                    </div>
-                </div>
-
-                <div class="buy d-flex justify-content-between align-items-center">
-                    <h4 class="text-dark fw-semibold">
-                        {{ $price }}
-                    </h4>
-                    <h5 class="mb-0">
-                        <span class="badge {{ $status ? 'text-bg-success' : 'text-bg-danger' }} badge-hover mb-2">{{ $status ? 'Vigente' : 'No Vigente' }}</span>
-                    </h5>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-center">
-                    <img src="{{ $qrCodeUrl }}" alt="QR Code">
-                </div>
-
-                <hr>
-                <div class="buy d-flex flex-row justify-content-between align-items-center gap-2">
-                    <button class="btn btn-success fw-bold col">
-                        <i class="bi bi-download me-2"></i>
-                        Descargar
-                    </button>
+            <div class="row">
+                <div class="col mb-2 truncate">
+                    <span class="badge bg-secondary-subtle text-secondary-emphasis rounded-pill mb-2 ">
+                        {{ $category }}
+                    </span>
                 </div>
             </div>
+
+            <img class="card-img img-fluid" src="{{ asset('storage/' . $image) }}" alt="Imagen del evento">
+
+            <div class="d-flex justify-content-between mt-3">
+                <div class="d-flex align-items-center">
+                    <span class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill mb-2">
+                        <i class="bi bi-geo-alt-fill me-1"></i>
+                        {{ $location }}
+                    </span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill mb-2">
+                        <i class="bi bi-calendar2-event-fill me-1"></i>
+                        {{ $date }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="d-flex flex-row justify-content-between align-items-center mb-1 mt-1">
+                <a href="{{route('event.show', $ticket->event->id)}}" class="w-100">
+                    <button class="btn btn-light fw-bold col w-100">
+                        <i class="bi bi-box-arrow-up-right me-2"></i>
+                        Ver evento
+                    </button>
+                </a>
+            </div>
+
+            <hr>
+
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <h4 class="fw-bold">
+                    Datos de compra
+                </h4>
+            </div>
+            <div class="row mb-0">
+                <div class="col-md-6">
+                    <label for="total">Precio</label>
+                    <h5 id="ticketPrice" class="font-weight-bold">${{number_format($price)}}</h5>
+                </div>
+                <div class="col-md-6">
+                    <label for="quantity">Cantidad</label>
+                    <h5 id="quantity" class="font-weight-bold">{{ $quantity }} <i class="bi bi-ticket-fill me-1"></i></h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="total">Total</label>
+                    <h4 id="total" class="font-weight-bold">${{ number_format($quantity * $price) }}</h4>
+                </div>
+            </div>
+
+            <small class="text-muted">
+
+                {{ \Carbon\Carbon::parse($purchaseDate)->format('d F Y, h:i A') }}
+            </small>
+
+            <hr class="mb-2">
+            <div class="d-flex justify-content-center w-100">
+                <h4 class="w-100 text-center">
+                    @if ($ticket->event->status_id == 3)
+                        <span class="badge text-bg-dark badge-hover">
+                            <i class="bi bi-x-circle-fill me-1"></i>
+                            Ticket vencido
+                        </span>
+                    @else
+                        <span class="badge text-bg-success badge-hover">
+                            <i class="bi bi-check-circle-fill me-1"></i>
+                            Ticket vigente
+                        </span>
+                    @endif
+                </h4>
+            </div>
+
+            <hr class="mt-0">
+            <div class="d-flex flex-row justify-content-between align-items-center gap-2">
+                <button class="btn btn-success fw-bold col">
+                    <i class="bi bi-download me-2"></i>
+                    Descargar
+                </button>
+            </div>
         </div>
-    </a>
+    </div>
 </div>
