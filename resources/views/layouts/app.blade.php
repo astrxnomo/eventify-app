@@ -76,6 +76,13 @@
                                 <li><h6 class="dropdown-header">Tickets</h6></li>
                                 <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('dashboard.tickets.index') }}"><i class="bi bi-ticket-fill text-primary"></i> Mis tickets</a></li>
                                 <li><hr class="dropdown-divider"></li>
+
+                                @if (Auth::user()->role_id===1) <!-- Asegúrate de que 'hasRole' funcione -->
+                                    <li><h6 class="dropdown-header">Usuarios</h6></li>
+                                    <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('users.index') }}"><i class="bi bi-ticket-fill text-primary"></i> Ver usuarios</a></li>
+                                @endif
+                                
+                                <li><hr class="dropdown-divider"></li>
                                 <li><h6 class="dropdown-header">Cuenta</h6></li>
                                 <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

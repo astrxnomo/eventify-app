@@ -9,6 +9,7 @@ use App\Models\Location;
 use App\Models\statu;
 use App\Models\Status;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -130,7 +131,6 @@ class EventController extends Controller
         $event->category_id=$request->input("eventCategory");
         $event->name=$request->input("eventName");
         $event->description=$request->input("eventDescription");
-        $event->img_url=$request->input("eventImage");
         $event->capacity=$request->input("eventCapacity");
         $event->price=$request->input("eventPrice");
         $event->start_date=$request->input("eventStartDate");
@@ -143,9 +143,19 @@ class EventController extends Controller
             $location = new Location();
         }
 
+       // Si se sube una nueva imagen, la actualiza
         if ($request->hasFile('eventImage')) {
-            $path = $request->file('eventImage')->store('events', 'public'); // Guarda la imagen en 'storage/app/public/events'
-            $event->img_url = $path; // Guarda el nombre del archivo en la base de datos
+        // Elimina la imagen anterior si existe
+            if ($event->img_url) {
+            Storage::delete('public/' . $event->img_url);
+            }
+
+            // Guarda la nueva imagen y actualiza el campo en la base de datos
+            $path = $request->file('eventImage')->store('events', 'public');
+            $event->img_url = $path;
+        } else {
+        // Si no se sube una nueva imagen, mantiene la existente
+        $event->img_url = $event->img_url;
         }
 
         // Update location fields

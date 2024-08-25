@@ -27,16 +27,19 @@ Route::get('event/{event}', [EventController::class, 'show'])->name('event.show'
 
 
 //Rutas CRUD usuarios
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
-Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
-Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::middleware('auth','role:admin')->group(function(){
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+});
 
 
 
-Route::prefix('dashboard')->middleware('auth')->group(function () {
+
+Route::prefix('dashboard')->middleware('auth','role:admin|user')->group(function () {
 
     Route::view('/', 'dashboard.home')->name('dashboard');
 

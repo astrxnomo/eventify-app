@@ -62,4 +62,9 @@ class User extends Authenticatable
     public function ticket(){
         return $this->belongsTo('App\Models\ticket');
     }
+
+    public function hasRole($role)
+    {
+        return $this->role === $role; 
+    }
 }
