@@ -22,7 +22,7 @@
                         @include('components.dashboard.ticket-card', [
                             'title' => $ticket->event->name,
                             'category' => $ticket->event->category->name,
-                            'image' => $ticket->event->image,
+                            'image' => $ticket->event->img_url,
                             'location' => $ticket->event->location->country,
                             'date' => \Carbon\Carbon::parse($ticket->event->date)->format('d F Y'),
                             'description' => $ticket->event->description,

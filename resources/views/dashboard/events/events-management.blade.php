@@ -14,7 +14,7 @@
             </h1>
             <hr class="mt-0">
 
-            <a href="{{route('dashboard.event.create')}}">
+            <a href="{{route('event.create')}}">
                 <button class="btn btn-primary btn-lg mb-3 w-100 text-white fw-bold">
                     <i class="bi bi-plus-square-fill me-2"></i>
                     Crear evento
@@ -29,7 +29,7 @@
                         @include('components.dashboard.event-card', [
                             'title' => $event->name,
                             'category' => $event->category->name,
-                            'image' => $event->img_url,  // Asegúrate de que esta propiedad exista
+                            'image' => $event->img_url,
                             'location' => $event->location ? $event->location->country : 'Sin ubicación',
                             'date' => \Carbon\Carbon::parse($event->start_date)->format('d F Y'),
                             'description' => $event->description,
