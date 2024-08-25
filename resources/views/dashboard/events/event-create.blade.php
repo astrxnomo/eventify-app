@@ -20,7 +20,7 @@
                 <div class="col-12 col-md-8 mb-4">
                     <div class="card">
                         <div class="card-body">
-                            <form id="EventForm" method="POST" action="{{ route('dashboard.event.store') }}" enctype="multipart/form-data">
+                            <form id="EventForm" method="POST" action="{{ route('event.store') }}" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="row mb-3">
@@ -138,7 +138,7 @@
 
                                 <div class="row mb-3 mt-4">
                                     <div class="col-md-6 offset-md-4">
-                                        <a href="{{ route('dashboard.events.index') }}" class="btn btn-secondary me-2">
+                                        <a href="{{ route('events.index') }}" class="btn btn-secondary me-2">
                                             <i class="bi bi-x-lg"></i>
                                             Cancelar
                                         </a>

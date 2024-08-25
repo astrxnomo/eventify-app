@@ -12,7 +12,7 @@
             @if(auth()->check() && $event->user_id == auth()->id())
                 <div class="alert alert-secondary alert-dismissible fade show" role="alert">
                     <i class="bi bi-calendar-check-fill me-1"></i>
-                    <strong>Este evento es tuyo, puedes editarlo en el <a href="{{route('dashboard.events.index')}}" class="link-dark">dashboard.</a></strong>
+                    <strong>Este evento es tuyo, puedes editarlo en el <a href="{{route('events.index')}}" class="link-dark">dashboard.</a></strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif

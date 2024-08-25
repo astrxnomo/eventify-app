@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Models\event;
+use App\Models\Event;
 use App\Models\Location;
-use App\Models\statu;
 use App\Models\Status;
-use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
@@ -89,7 +87,7 @@ class EventController extends Controller
 
         $event->save();
 
-        return redirect()->route('dashboard.events.index')->with('success', 'Event created successfully');
+        return redirect()->route('events.index')->with('success', 'Event created successfully');
     }
 
     /**
@@ -106,12 +104,12 @@ class EventController extends Controller
     public function edit(string $id)
     {
         //Se utiliza para consultar los datos a editar
-        
+
         $event=Event::find($id);
-        
+
         $status=Status::all();
-        $locations=location::all();
-        $categories=category::all();
+        $locations=Location::all();
+        $categories=Category::all();
         $location = Location::find($event->location_id);
         //return view('dashboard.event-edit')->with('event',$event);
         //return view('dashboard.events.index', compact('event','status','locations','categories'));
@@ -135,7 +133,7 @@ class EventController extends Controller
         $event->price=$request->input("eventPrice");
         $event->start_date=$request->input("eventStartDate");
         $event->end_date=$request->input("eventEndDate");
-        
+
          // Find or create the associated location
         $location = Location::find($event->location_id);
 
@@ -177,8 +175,8 @@ class EventController extends Controller
 
 
 
-        
-        return redirect()->route('dashboard.events.index');
+
+        return redirect()->route('events.index');
 
     }
 
@@ -197,7 +195,7 @@ class EventController extends Controller
 
         $event->delete();
 
-        return redirect()->route('dashboard.events.index');
+        return redirect()->route('events.index');
     }
 
 }

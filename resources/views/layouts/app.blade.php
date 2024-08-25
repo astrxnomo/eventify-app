@@ -16,7 +16,7 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js', ])
 
-    @if (Route::currentRouteName() == 'dashboard.event.edit' || Route::currentRouteName() == 'dashboard.event.create')
+    @if (Route::currentRouteName() == 'event.edit' || Route::currentRouteName() == 'event.create')
         @vite('resources/js/event-data-preview.js')
     @endif
 
@@ -69,19 +69,22 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li><h6 class="dropdown-header">Eventos</h6></li>
-                                <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('dashboard.events.index') }}"><i class="bi bi-calendar2-plus-fill text-primary"></i> Crear evento</a></li>
-                                <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('dashboard.events.index') }}"><i class="bi bi-calendar2-minus-fill text-primary"></i> Mis eventos</a></li>
+                                <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('events.index') }}"><i class="bi bi-calendar2-plus-fill text-primary"></i> Crear evento</a></li>
+                                <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('events.index') }}"><i class="bi bi-calendar2-minus-fill text-primary"></i> Mis eventos</a></li>
 
                                 <li><hr class="dropdown-divider"></li>
                                 <li><h6 class="dropdown-header">Tickets</h6></li>
-                                <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('dashboard.tickets.index') }}"><i class="bi bi-ticket-fill text-primary"></i> Mis tickets</a></li>
-                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('tickets.index') }}"><i class="bi bi-ticket-fill text-primary"></i> Mis tickets</a></li>
 
-                                @if (Auth::user()->role_id===1) <!-- Asegúrate de que 'hasRole' funcione -->
-                                    <li><h6 class="dropdown-header">Usuarios</h6></li>
-                                    <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('users.index') }}"><i class="bi bi-ticket-fill text-primary"></i> Ver usuarios</a></li>
+
+                                @if (Auth::user()->role_id===1)
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><h6 class="dropdown-header">Administración</h6></li>
+                                    <li><a class="dropdown-item d-flex gap-2 align-items-center"><i class="bi bi-calendar-event-fill text-primary"></i> Eventos</a></li>
+                                    <li><a class="dropdown-item d-flex gap-2 align-items-center" href="{{ route('users.index') }}"><i class="bi bi-people-fill text-primary"></i> Usuarios</a></li>
+                                    <li><a class="dropdown-item d-flex gap-2 align-items-center"><i class="bi bi-ticket-perforated-fill text-primary"></i> Tickets</a></li>
                                 @endif
-                                
+
                                 <li><hr class="dropdown-divider"></li>
                                 <li><h6 class="dropdown-header">Cuenta</h6></li>
                                 <li>

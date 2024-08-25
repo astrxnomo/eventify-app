@@ -16,7 +16,7 @@
                 </div>
             </div>
 
-            
+
             <img class="card-img img-fluid" src="{{ asset('storage/' . $event->img_url) }}" alt="Imagen del evento">
 
 
@@ -72,7 +72,7 @@
             <div class="d-flex">
                 <!-- Botón de edición -->
                 <div class="col me-1">
-                    <a href="{{ route('dashboard.event.edit', $event->id) }}">
+                    <a href="{{ route('event.edit', $event->id) }}">
                         <button type="submit" class="btn btn-success fw-bold w-100 h-100">
                             <i class="bi bi-pencil-square me-1"></i>
                             Editar
@@ -82,7 +82,7 @@
 
                 <!-- Formulario de eliminación -->
                 <div class="col ms-1">
-                    <form method="POST" action="{{ route('dashboard.event.destroy', $event->id) }}">
+                    <form method="POST" action="{{ route('event.destroy', $event->id) }}">
                         @csrf
                         @method('DELETE')
 

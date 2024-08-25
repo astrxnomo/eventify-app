@@ -14,11 +14,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+
         //Va a la vista de gestion_usuarios
         //Para mostrar todos los datos
         $users = User::with('role')->get();
-        return view('users_management')->with('users', $users);
+        return view('dashboard.admin.users.users_management')->with('users', $users);
 
     }
 
@@ -29,7 +29,7 @@ class UserController extends Controller
     {
         //Va a la vista crear_usuarios
         $roles = Role::all();
-        return view('users_create')->with('roles', $roles);
+        return view('dashboard.admin.users.users_create')->with('roles', $roles);
     }
 
     /**
@@ -37,11 +37,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         //Toma los datos para guardarlos en la BD
         $user = new User();
-        $user->name = $request->name; 
-        $user->email = $request->email; 
+        $user->name = $request->name;
+        $user->email = $request->email;
         // Hashear la contraseña antes de guardarla
         $user->password = Hash::make($request->password);
         $user->role_id = $request->role_id;
@@ -67,7 +67,7 @@ class UserController extends Controller
         //Se utiliza para consultar los datos a editar
         $user = User::find($id);
         $roles = Role::all();
-        return view('users_edit')->with(['user' => $user, 'roles' => $roles]);
+        return view('dashboard.admin.users.users_edit')->with(['user' => $user, 'roles' => $roles]);
     }
 
     /**
@@ -77,8 +77,8 @@ class UserController extends Controller
     {
         //Se hace el Update en la base de datos
         $user = User::find($id);
-        $user->name = $request->name; 
-        $user->email = $request->email; 
+        $user->name = $request->name;
+        $user->email = $request->email;
         // Solo hashear y actualizar la contraseña si se ha proporcionado una nueva
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);

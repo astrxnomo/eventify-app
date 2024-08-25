@@ -11,12 +11,12 @@ class ticket extends Model
 
     //Un ticket puede estar en uno muchos usuarios
     public function user(){
-        return $this->belongsTo('App\Models\user');
+        return $this->belongsTo(User::class);
     }
 
     //Un ticket puede estar en uno o muchos eventos
     public function event(){
-        return $this->belongsTo(event::class);
+        return $this->belongsTo(Event::class);
     }
 
     protected $fillable=[

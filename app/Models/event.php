@@ -14,7 +14,7 @@ class Event extends Model
         return $this->belongsTo(User::class);
     }
 
-    
+
 
     public function location()
     {
@@ -22,7 +22,7 @@ class Event extends Model
     }
 
     public function category(){
-        return $this->belongsTo('App\Models\Category');
+        return $this->belongsTo(Category::class);
     }
 
     public function tickets()

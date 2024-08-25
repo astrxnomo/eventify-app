@@ -16,21 +16,21 @@
 
         </div>
         <div>
-            <form action="{{ route('dashboard.event.update',$event) }}" method="POST">
-                
-                
-                
-        
-        
-                
+            <form action="{{ route('event.update',$event) }}" method="POST">
+
+
+
+
+
+
             </form>
             <div class="row">
                 <div class="col-12 col-md-8 mb-4">
                     <div class="card">
                         <div class="card-body">
-                            <form id="EventForm" action="{{ route('dashboard.event.update',$event) }}" method="POST" enctype="multipart/form-data">
+                            <form id="EventForm" action="{{ route('event.update',$event) }}" method="POST" enctype="multipart/form-data">
                                 @csrf @method('PATCH')
-            
+
                                 <div class="row mb-3">
                                     <label for="eventName" class="col-md-4 col-form-label text-md-end fw-semibold">{{ __('Nombre') }}</label>
 
@@ -161,7 +161,7 @@
                                 </div>
                                 <div class="row mb-3 mt-4">
                                     <div class="col-md-6 offset-md-4">
-                                        <a href="{{ route('dashboard.events.index') }}" class="btn btn-secondary me-2">
+                                        <a href="{{ route('events.index') }}" class="btn btn-secondary me-2">
                                             <i class="bi bi-x-lg"></i>
                                             Cancelar
                                         </a>
@@ -190,7 +190,7 @@
 
                                 </div>
                             </div>
-                            <img class="card-img img-fluid" src="{{ asset('storage/' . '1.png') }}" alt="Imagen del evento">
+                            <img class="card-img img-fluid" src="{{ asset('storage/' . $event->img_url) }}" alt="Imagen del evento" id="eventImagePreview">
                             <div class="d-flex justify-content-between mt-3">
                                 <div class="d-flex align-items-center">
                                     <span class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill mb-2">
@@ -224,7 +224,7 @@
             </div>
         </div>
     </div>
-            
+
         </div>
     </div>
 

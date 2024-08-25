@@ -49,22 +49,18 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-    //Un usuario va a tener 1 o N tickets
-    public function tickets(){
-        return $this->hasMany('App\Models\ticket');
+    public function events()
+    {
+        return $this->hasMany(Event::class);
     }
 
-    //Un usuario va a tener 1 o N events
-    public function events(){
-        return $this->hasMany('App\Models\event');
-    }
-
-    public function ticket(){
-        return $this->belongsTo('App\Models\ticket');
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
     }
 
     public function hasRole($role)
     {
-        return $this->role === $role; 
+        return $this->role === $role;
     }
 }
