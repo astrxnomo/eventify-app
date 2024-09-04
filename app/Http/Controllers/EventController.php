@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\Location;
 use App\Models\Status;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 
 class EventController extends Controller
 {
@@ -20,10 +21,8 @@ class EventController extends Controller
         return view('home', compact('events'));
     }
 
-
     public function showMyEvents()
     {
-        //funcion para vincular a los usuarios con sus respectivos eventos creados
         // Obtener el usuario autenticado
         $user = auth()->user();
         // Obtener los eventos del usuario
@@ -52,15 +51,25 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //Toma los datos registrados en la vista para almacenarlos en la BD
-
+        // Crear la ubicación y guardar los datos básicos
         $location = new Location;
         $location->country = $request->eventCountry;
         $location->city = $request->eventCity;
         $location->region = $request->eventRegion;
         $location->address = $request->eventAddress;
 
+        // Guardar la ubicación para obtener el ID
+        $location->save();
 
+        // Obtener coordenadas usando la dirección
+        $coordinates = $this->getCoordinates($location->address, $location->city, $location->region, $location->country);
+        if ($coordinates) {
+            $location->latitude = $coordinates['lat'];
+            $location->longitude = $coordinates['lon'];
+            $location->save();
+        }
+
+        // Crear el evento
         $event = new Event;
         $event->name = $request->eventName;
         $event->category()->associate($request->input('eventCategory'));
@@ -69,7 +78,8 @@ class EventController extends Controller
         $event->description = $request->eventDescription;
         $event->capacity = $request->eventCapacity;
         $event->price = $request->eventPrice;
-        $path = $request->file('eventImage')->store('images', 'public'); $event->img_url = $path;
+        $path = $request->file('eventImage')->store('images', 'public'); 
+        $event->img_url = $path;
         $event->user_id = auth()->id();
 
         if ($event->capacity > 0) {
@@ -77,14 +87,11 @@ class EventController extends Controller
         } else {
             $event->status_id = 2;
         }
-        if ($request->hasFile('eventImage')) {
-            $path = $request->file('eventImage')->store('events', 'public'); // Guarda la imagen en 'storage/app/public/events'
-            $event->img_url = $path; // Guarda el nombre del archivo en la base de datos
-        }
 
-        $location->save();
+        // Asignar ubicación al evento
         $event->location_id = $location->id;
 
+        // Guardar el evento
         $event->save();
 
         return redirect()->route('events.index')->with('success', 'Event created successfully');
@@ -95,7 +102,14 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        return view('event', compact('event'));
+        // Se construye la dirección completa para la geocodificación
+        $address = "{$event->location->address}, {$event->location->city}, {$event->location->region}, {$event->location->country}";
+
+        // Realizamos una solicitud HTTP a la API de Nominatim para obtener las coordenadas
+        $coordinates = $this->getCoordinates($event->location->address, $event->location->city, $event->location->region, $event->location->country);
+
+        // Pasan coordenadas a la vista
+        return view('event', compact('event', 'coordinates'));
     }
 
     /**
@@ -103,17 +117,13 @@ class EventController extends Controller
      */
     public function edit(string $id)
     {
-        //Se utiliza para consultar los datos a editar
-
-        $event=Event::find($id);
-
-        $status=Status::all();
-        $locations=Location::all();
-        $categories=Category::all();
+        $event = Event::find($id);
+        $status = Status::all();
+        $locations = Location::all();
+        $categories = Category::all();
         $location = Location::find($event->location_id);
-        //return view('dashboard.event-edit')->with('event',$event);
-        //return view('dashboard.events.index', compact('event','status','locations','categories'));
-        return view('dashboard.events.event-edit',compact('event','status','locations','categories','location'));;
+
+        return view('dashboard.events.event-edit', compact('event', 'status', 'locations', 'categories', 'location'));
     }
 
     /**
@@ -121,39 +131,32 @@ class EventController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //Se hace el update en la BD
-        //Se hace el update en la BD
-        $event=Event::find($id);
-        $event->user_id =$request->user()->id;
-        $event->status_id=$request->input("eventStatus");
-        $event->category_id=$request->input("eventCategory");
-        $event->name=$request->input("eventName");
-        $event->description=$request->input("eventDescription");
-        $event->capacity=$request->input("eventCapacity");
-        $event->price=$request->input("eventPrice");
-        $event->start_date=$request->input("eventStartDate");
-        $event->end_date=$request->input("eventEndDate");
+        // Se hace el update en la BD
+        $event = Event::find($id);
+        $event->user_id = $request->user()->id;
+        $event->status_id = $request->input("eventStatus");
+        $event->category_id = $request->input("eventCategory");
+        $event->name = $request->input("eventName");
+        $event->description = $request->input("eventDescription");
+        $event->capacity = $request->input("eventCapacity");
+        $event->price = $request->input("eventPrice");
+        $event->start_date = $request->input("eventStartDate");
+        $event->end_date = $request->input("eventEndDate");
 
-         // Find or create the associated location
+        // Find or create the associated location
         $location = Location::find($event->location_id);
 
         if (!$location) {
             $location = new Location();
         }
 
-       // Si se sube una nueva imagen, la actualiza
+        // Si se sube una nueva imagen, la actualiza
         if ($request->hasFile('eventImage')) {
-        // Elimina la imagen anterior si existe
             if ($event->img_url) {
-            Storage::delete('public/' . $event->img_url);
+                Storage::delete('public/' . $event->img_url);
             }
-
-            // Guarda la nueva imagen y actualiza el campo en la base de datos
             $path = $request->file('eventImage')->store('events', 'public');
             $event->img_url = $path;
-        } else {
-        // Si no se sube una nueva imagen, mantiene la existente
-        $event->img_url = $event->img_url;
         }
 
         // Update location fields
@@ -161,6 +164,13 @@ class EventController extends Controller
         $location->region = $request->input("eventRegion");
         $location->city = $request->input("eventCity");
         $location->address = $request->input("eventAddress");
+
+        // Obtener coordenadas usando la dirección actualizada
+        $coordinates = $this->getCoordinates($location->address, $location->city, $location->region, $location->country);
+        if ($coordinates) {
+            $location->latitude = $coordinates['lat'];
+            $location->longitude = $coordinates['lon'];
+        }
 
         // Save the location
         $location->save();
@@ -171,13 +181,7 @@ class EventController extends Controller
         // Save the event
         $event->save();
 
-
-
-
-
-
         return redirect()->route('events.index');
-
     }
 
     /**
@@ -186,16 +190,30 @@ class EventController extends Controller
     public function destroy(string $id)
     {
         $event = Event::findOrFail($id);
-        //$location = Location::findOrFail($event->location_id);
-
-        //$event->delete();
-        //$location->delete();
-
-        //return redirect()->route('dashboard.events.index')->with('success', 'Event deleted successfully');
-
         $event->delete();
 
         return redirect()->route('events.index');
     }
 
+    /**
+     * Get coordinates from address using Nominatim API.
+     */
+    private function getCoordinates($address, $city, $region, $country)
+    {
+        $fullAddress = "{$address}, {$city}, {$region}, {$country}";
+        $response = Http::get('https://nominatim.openstreetmap.org/search', [
+            'q' => $fullAddress,
+            'format' => 'json',
+            'limit' => 1
+        ]);
+
+        if ($response->successful() && count($response->json()) > 0) {
+            $data = $response->json()[0];
+            return [
+                'lat' => $data['lat'],
+                'lon' => $data['lon']
+            ];
+        }
+        return null;
+    }
 }

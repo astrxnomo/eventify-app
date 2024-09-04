@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('city');
             $table->string('region');
             $table->string('country');
+            $table->decimal('latitude', 10, 7)->nullable(); // Para latitud
+            $table->decimal('longitude', 10, 7)->nullable(); // Para longitud
             $table->timestamps();
             $table->softDeletes();   
         });

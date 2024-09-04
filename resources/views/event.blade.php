@@ -4,6 +4,12 @@
 
 @section('content')
 
+<!-- Añadir CSS de Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+<!-- Añadir JS de Leaflet -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 <section class="container mb-5">
 
     <div class="row mt-4">
@@ -71,6 +77,10 @@
                         </div>
 
                     </div>
+
+                    <!-- Contenedor para el mapa -->
+                    <div id="map" style="height: 400px"></div>
+
                     <p class="card-text ">
                         {{ $event->description }}
                     </p>
@@ -199,4 +209,22 @@
 
 
 </section>
+
+<script>
+    @if($event->location && $event->location->latitude && $event->location->longitude)
+        var map = L.map('map').setView([{{ $event->location->latitude }}, {{ $event->location->longitude }}], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        L.marker([{{ $event->location->latitude }}, {{ $event->location->longitude }}]).addTo(map)
+            .bindPopup('{{ $event->name }}')
+            .openPopup();
+    @else
+        console.error('No se puede mostrar el mapa: faltan datos de ubicación.');
+    @endif
+</script>
+
+
 @endsection
