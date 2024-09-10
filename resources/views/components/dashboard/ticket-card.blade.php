@@ -88,12 +88,14 @@
             </div>
 
             <hr class="mt-0">
+
             <div class="d-flex flex-row justify-content-between align-items-center gap-2">
-                <button class="btn btn-success fw-bold col">
+                <a href="{{ route('tickets.report', ['id' => $ticket->id]) }}" class="btn btn-success fw-bold col">
                     <i class="bi bi-download me-2"></i>
                     Descargar
-                </button>
+                </a>
             </div>
+
         </div>
     </div>
 </div>

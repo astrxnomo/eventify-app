@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Ticket;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class TicketController extends Controller
 {
@@ -85,4 +87,28 @@ class TicketController extends Controller
     {
         //
     }
+
+
+    /**
+     * reporte PDF del ticket.
+     */
+    public function generateTicket($id)
+    {
+        $ticket = Ticket::with('event')->findOrFail($id);
+        $event = $ticket->event;
+        $user = $ticket->user;
+    
+        // Convertir las fechas a Carbon
+        $event->start_date = Carbon::parse($event->start_date);
+        $event->end_date = Carbon::parse($event->end_date);
+    
+        // Calcula el total
+        $total = $ticket->quantity * $event->price;
+    
+        // Genera el PDF
+        $pdf = PDF::loadView('reports.ticket-report', compact('ticket', 'event', 'user', 'total'));
+    
+        return $pdf->download('ticket.pdf');
+    }
+    
 }

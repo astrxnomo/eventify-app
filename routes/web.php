@@ -48,6 +48,9 @@ Route::prefix('dashboard')->middleware(['auth','role:admin|user'])->group(functi
         Route::post('store', [TicketController::class, 'store'])->name('ticket.store');
     });
 
+    //reporte del ticket
+    Route::get('/tickets/{id}/report', [TicketController::class, 'generateTicket'])->name('tickets.report');
+
 
     //Admins
     Route::prefix('admin')->middleware('role:admin')->group(function(){
