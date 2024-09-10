@@ -10,6 +10,7 @@ use App\Models\Status;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class EventController extends Controller
 {
@@ -230,4 +231,15 @@ class EventController extends Controller
         }
         return null;
     }
+
+
+    public function downloadEventReport(Event $event)
+    {
+        $data = compact('event');
+        // Generacion el PDF
+        $pdf = Pdf::loadView('reports.event-report', $data);
+        // Descargar el PDF
+        return $pdf->download('event-' . $event->id . '.pdf');
+    }
+
 }

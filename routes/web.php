@@ -25,7 +25,8 @@ Route::get('/', [EventController::class, 'showHome'])->name('home');
 Route::get('explore', [EventController::class, 'showExplore'])->name('explore');
 Route::get('event/{event}', [EventController::class, 'show'])->name('event.show');
 
-
+//Reporte del evento
+Route::get('/events/{event}/report', [EventController::class, 'downloadEventReport'])->name('events.downloadReport');
 
 Route::prefix('dashboard')->middleware(['auth','role:admin|user'])->group(function () {
 

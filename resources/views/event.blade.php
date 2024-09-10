@@ -199,12 +199,15 @@
 
                                 <input type="hidden" name="event_id" value="{{$event->id}}" >
                                 <button type="submit" class="btn btn-primary text-white fw-semibold w-100">Comprar</button>
+
                             @endif
                         @endguest
                     </form>
                 </div>
             </div>
         </div>
+        
+        <a href="{{ route('events.downloadReport', $event) }}" class="btn btn-primary">Descargar Información del Evento</a>
     </div>
 
 
