@@ -9,6 +9,7 @@ use App\Models\Location;
 use App\Models\Status;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 
 class EventController extends Controller
 {
@@ -51,23 +52,41 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        // Crear la ubicación y guardar los datos básicos
+            // Crear la ubicación y guardar los datos básicos
         $location = new Location;
         $location->country = $request->eventCountry;
         $location->city = $request->eventCity;
         $location->region = $request->eventRegion;
         $location->address = $request->eventAddress;
 
+        // Obtener la dirección del evento
+        $fullAddress = $location->address . ', ' . $location->city;
+
+        // Inicializar el cliente HTTP de Guzzle
+        $client = new Client();
+
+        
+        // Llamada a la API de Nominatim con el User-Agent
+        $url = "https://nominatim.openstreetmap.org/search?q=" . urlencode($fullAddress) . "&format=json&limit=1";
+        $response = $client->request('GET', $url, [
+            'headers' => [
+            'User-Agent' => 'eventify-app'  
+            ]
+        ]);
+
+        $data = json_decode($response->getBody(), true);
+
+        if (!empty($data)) {
+            $location->latitude = $data[0]['lat'];
+            $location->longitude = $data[0]['lon'];
+        } else {
+            $location->latitude = null;
+            $location->longitude = null;
+        }
+        
+
         // Guardar la ubicación para obtener el ID
         $location->save();
-
-        // Obtener coordenadas usando la dirección
-        $coordinates = $this->getCoordinates($location->address, $location->city, $location->region, $location->country);
-        if ($coordinates) {
-            $location->latitude = $coordinates['lat'];
-            $location->longitude = $coordinates['lon'];
-            $location->save();
-        }
 
         // Crear el evento
         $event = new Event;
@@ -78,17 +97,23 @@ class EventController extends Controller
         $event->description = $request->eventDescription;
         $event->capacity = $request->eventCapacity;
         $event->price = $request->eventPrice;
-        $path = $request->file('eventImage')->store('images', 'public'); 
-        $event->img_url = $path;
-        $event->user_id = auth()->id();
 
-        if ($event->capacity > 0) {
-            $event->status_id = 1;
-        } else {
-            $event->status_id = 2;
+        // Guardar la imagen
+        if ($request->hasFile('eventImage')) {
+            $path = $request->file('eventImage')->store('images', 'public');
+            $event->img_url = $path;
         }
 
-        // Asignar ubicación al evento
+        $event->user_id = auth()->id();
+
+        // Determinar el estado del evento
+        if ($event->capacity > 0) {
+            $event->status_id = 1; // Asignar estado de evento activo
+        } else {
+            $event->status_id = 2; // Asignar estado de evento sin cupo
+        }
+
+        // Asignar la ubicación al evento
         $event->location_id = $location->id;
 
         // Guardar el evento
@@ -159,18 +184,7 @@ class EventController extends Controller
             $event->img_url = $path;
         }
 
-        // Update location fields
-        $location->country = $request->input("eventCountry");
-        $location->region = $request->input("eventRegion");
-        $location->city = $request->input("eventCity");
-        $location->address = $request->input("eventAddress");
-
-        // Obtener coordenadas usando la dirección actualizada
-        $coordinates = $this->getCoordinates($location->address, $location->city, $location->region, $location->country);
-        if ($coordinates) {
-            $location->latitude = $coordinates['lat'];
-            $location->longitude = $coordinates['lon'];
-        }
+        
 
         // Save the location
         $location->save();

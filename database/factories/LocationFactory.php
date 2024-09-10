@@ -16,6 +16,8 @@ class LocationFactory extends Factory
             'city' => $this->faker->city,
             'region' => $this->faker->state,
             'country' => $this->faker->country,
+            'latitude' =>$this->faker->latitude,
+            'longitude' =>$this->faker->longitude,
         ];
     }
 }
