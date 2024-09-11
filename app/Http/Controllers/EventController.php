@@ -185,7 +185,41 @@ class EventController extends Controller
             $event->img_url = $path;
         }
 
-        
+        //Validar si la direccion ha cambiado
+        $addressChanged=$location->address !== $request->input('eventAddress') || $location->city !== $request->input('eventCity');
+
+        //Actualizar los campos de la ubicacion
+        $location->country = $request->input('eventCountry');
+        $location->city = $request->input('eventCity');
+        $location->region = $request->input('eventRegion');
+        $location->address = $request->input('eventAddress');
+
+        //Si la direccion ha cambiado,hacer la geocodificacion
+        if ($addressChanged) {
+            $fullAddress = $location->address . ', ' . $location->city ;
+            
+            
+            $client = new Client();
+            $url = "https://nominatim.openstreetmap.org/search?q=" . urlencode($fullAddress) . "&format=json&limit=1";
+            
+            
+            $response = $client->request('GET', $url, [
+                'headers' => [
+                    'User-Agent' => 'eventify-app'  
+                ]
+            ]);
+                
+            $data = json_decode($response->getBody(), true);
+    
+            if (!empty($data)) {
+                $location->latitude = $data[0]['lat'];
+                $location->longitude = $data[0]['lon'];
+            } else {
+                $location->latitude = null;
+                $location->longitude = null;
+            }
+            
+        }
 
         // Save the location
         $location->save();
