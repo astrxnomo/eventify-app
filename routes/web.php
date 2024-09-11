@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\TicketController;
-
+use App\Http\Controllers\StatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,20 @@ Route::prefix('dashboard')->middleware(['auth','role:admin|user'])->group(functi
         Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
         Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
         Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+        Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+        Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+        Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+        Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+        Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
+        Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+        Route::get('/status', [StatusController::class, 'index'])->name('status.index');
+        Route::get('/status/create', [StatusController::class, 'create'])->name('status.create');
+        Route::post('/status', [StatusController::class, 'store'])->name('status.store');
+        Route::get('/status/{id}/edit', [StatusController::class, 'edit'])->name('status.edit');
+        Route::put('/status/{id}', [StatusController::class, 'update'])->name('status.update');
+        Route::delete('/status/{id}', [StatusController::class, 'destroy'])->name('status.destroy');
     });
 });
 

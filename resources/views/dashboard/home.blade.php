@@ -89,6 +89,33 @@
                         </div>
                     </a>
                 </div>
+                <div class="col-4 mb-5 mb-lg-0">
+                    <a href="{{ route('categories.index') }}" class="text-decoration-none card-hover">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <i class="fas fa-ticket-alt fa-4x text-primary mb-4"></i>
+                                    <h4 class="card-title"><strong><i class="bi bi-people-fill me-2"></i>Categorias</strong></h4>
+                                    <p class="card-text text-muted">Administra las categorias</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-4 mb-5 mb-lg-0">
+                    <a href="{{ route('status.index') }}" class="text-decoration-none card-hover">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <i class="fas fa-list-alt fa-4x text-primary mb-4"></i>
+                                    <h4 class="card-title"><strong><i class="bi bi-people-fill me-2"></i>Estados</strong></h4>
+                                    <p class="card-text text-muted">Administra los estados</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
             </div>
         </div>
     @endif
