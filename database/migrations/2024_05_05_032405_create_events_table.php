@@ -30,6 +30,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('img_url');
             $table->integer('capacity');
+            $table->integer('attendees')->default(0);
             $table->integer('price');
             $table->dateTime('start_date');
             $table->dateTime('end_date');

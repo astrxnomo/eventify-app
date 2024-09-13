@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\ChartDataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,7 @@ Auth::routes();
 Route::get('/', [EventController::class, 'showHome'])->name('home');
 Route::get('explore', [EventController::class, 'showExplore'])->name('explore');
 Route::get('event/{event}', [EventController::class, 'show'])->name('event.show');
-
+Route::get('/chart-data', [ChartDataController::class, 'getData']);
 //Reporte del evento
 Route::get('/events/{event}/report', [EventController::class, 'downloadEventReport'])->name('events.downloadReport');
 
@@ -75,6 +76,8 @@ Route::prefix('dashboard')->middleware(['auth','role:admin|user'])->group(functi
         Route::get('/status/{id}/edit', [StatusController::class, 'edit'])->name('status.edit');
         Route::put('/status/{id}', [StatusController::class, 'update'])->name('status.update');
         Route::delete('/status/{id}', [StatusController::class, 'destroy'])->name('status.destroy');
+
+
     });
 });
 

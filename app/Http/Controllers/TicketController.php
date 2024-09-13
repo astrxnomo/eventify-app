@@ -47,6 +47,7 @@ class TicketController extends Controller
         $ticket->save();
 
         $event->capacity -= $request->quantity;
+        $event->attendees += $request->quantity;
 
         if ($event->capacity == 0) {
             $event->status_id = 2;
@@ -97,18 +98,18 @@ class TicketController extends Controller
         $ticket = Ticket::with('event')->findOrFail($id);
         $event = $ticket->event;
         $user = $ticket->user;
-    
+
         // Convertir las fechas a Carbon
         $event->start_date = Carbon::parse($event->start_date);
         $event->end_date = Carbon::parse($event->end_date);
-    
+
         // Calcula el total
         $total = $ticket->quantity * $event->price;
-    
+
         // Genera el PDF
         $pdf = PDF::loadView('reports.ticket-report', compact('ticket', 'event', 'user', 'total'));
-    
+
         return $pdf->download('ticket.pdf');
     }
-    
+
 }
