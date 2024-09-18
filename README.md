@@ -6,3 +6,19 @@ Aplicación web que permitirá a los usuarios crear y promocionar eventos de for
 <h3>Alejandro Bermudez Murcia</h3>
 <h3>Sergio Alejandro Gaitan Quintero</h3>
 
+<h1>Comandos requeridos para iniciar:</h1>
+
+composer update
+npm install
+php artisan key:generate
+
+php artisan migrate
+php artisan db:seed
+
+php artisan storage:link
+composer require guzzlehttp/guzzle
+composer require barryvdh/laravel-dompdf
+
+php artisan serve
+npm run dev
+
