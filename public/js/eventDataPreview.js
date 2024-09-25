@@ -1,3 +1,18 @@
+// Selecciona los elementos del DOM
+var eventName = document.getElementById('eventName');
+var eventCountry = document.getElementById('eventCountry');
+var eventStartDate = document.getElementById('eventStartDate');
+var eventDescription = document.getElementById('eventDescription');
+var eventPrice = document.getElementById('eventPrice');
+var eventImage = document.getElementById('eventImage');
+var eventNamePreview = document.getElementById('eventNamePreview');
+var eventLocationPreview = document.getElementById('eventLocationPreview');
+var eventStartDatePreview = document.getElementById('eventDatePreview');
+var eventDescriptionPreview = document.getElementById('eventDescriptionPreview');
+var eventPricePreview = document.getElementById('eventPricePreview');
+var eventImageCard = document.getElementById('eventImagePreview');
+
+// Añade los event listeners
 eventName.addEventListener('input', function() {
     eventNamePreview.textContent = this.value;
 });
@@ -6,8 +21,8 @@ eventCountry.addEventListener('input', function() {
     eventLocationPreview.textContent = this.value;
 });
 
-eventDate.addEventListener('input', function() {
-    eventDatePreview.textContent = this.value;
+eventStartDate.addEventListener('input', function() {
+    eventStartDatePreview.textContent = this.value;
 });
 
 eventDescription.addEventListener('input', function() {
