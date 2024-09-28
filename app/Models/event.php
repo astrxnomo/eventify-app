@@ -14,8 +14,6 @@ class Event extends Model
         return $this->belongsTo(User::class);
     }
 
-
-
     public function location()
     {
         return $this->belongsTo(Location::class);
@@ -24,11 +22,17 @@ class Event extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+    
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
 
     public function tickets()
     {
         return $this->hasMany(Ticket::class);
     }
+
     protected $fillable=[
         'name',
         'description',
@@ -36,6 +40,11 @@ class Event extends Model
         'capacity',
         'price',
         'start_date',
-        'end_date'
+        'end_date',
+        'user_id',     
+        'location_id',  
+        'category_id',  
+        'status_id'    
+
     ];
 }
