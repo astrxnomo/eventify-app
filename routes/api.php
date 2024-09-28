@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\API\CategoryApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\EventApiController;
+use App\Http\Controllers\API\LocationApiController;
+use App\Http\Controllers\API\StatusApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +32,6 @@ Route::post('event', [EventApiController::class, 'store']);
 Route::put('event/{id}', [EventApiController::class, 'update']);
 Route::delete('event/{id}', [EventApiController::class, 'destroy']);
 
+Route::apiResource('statuses',StatusApiController::class);
+Route::apiResource('locations',LocationApiController::class);
+Route::apiResource('categories',CategoryApiController::class);
