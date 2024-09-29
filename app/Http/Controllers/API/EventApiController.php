@@ -48,6 +48,7 @@ class EventApiController extends Controller
             'location_id' => 'required|exists:locations,id',
             'status_id' => 'required|exists:statuses,id',
             'user_id' => 'nullable|exists:users,id',
+            'img_url' => 'nullable|string',
         ]);
 
         // Crear evento
@@ -70,6 +71,7 @@ class EventApiController extends Controller
             'location_id' => 'sometimes|required|exists:locations,id',
             'status_id' => 'sometimes|required|exists:statuses,id',
             'user_id' => 'nullable|exists:users,id',
+            'img_url' => 'nullable|string',
         ]);
 
         $event = Event::find($id);

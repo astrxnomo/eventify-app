@@ -2,6 +2,7 @@
 Aplicación web que permitirá a los usuarios crear y promocionar eventos de forma sencilla, desde pequeñas reuniones en casa hasta grandes conciertos y convenciones.
 </br>
 <h1><a href="https://docs.google.com/document/d/16DYdFm3wAC0813IsD3SZrFxFU53xAbaBKwPDLM85pvM/edit?usp=sharing">Documento con presentación general de la aplicación</a></h1>
+<h1><a href="https://github.com/astrxnomo/microservice-eventify-app.git">Microservicio con React</a></h1>
 </br>
 <h2>Desarrollado por:<h2>
 Luis Felipe Giraldo Ortega </br>
