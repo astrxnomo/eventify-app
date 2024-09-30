@@ -21,7 +21,7 @@
                     @foreach ($tickets as $ticket)
                         @include('components.dashboard.ticket-card', [
                             'title' => $ticket->event->name,
-                            'category' => $ticket->event->category->name,
+                            'category' => $ticket->event->category ? $ticket->event->category->name : 'Sin categoría',
                             'image' => $ticket->event->img_url,
                             'location' => $ticket->event->location->country,
                             'date' => \Carbon\Carbon::parse($ticket->event->date)->format('d F Y'),

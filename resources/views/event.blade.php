@@ -49,7 +49,7 @@
                     <div class="row">
                         <div class="col badge-container">
                             <span class="badge bg-secondary-subtle text-secondary-emphasis rounded-pill mb-2 ">
-                                {{ $event->category->name }}
+                                {{ $event->category ? $event->category->name : 'Sin categoría'}}
                             </span>
                         </div>
                     </div>
@@ -206,7 +206,7 @@
                 </div>
             </div>
         </div>
-        
+
         <a href="{{ route('events.downloadReport', $event) }}" class="btn btn-primary">Descargar Información del Evento</a>
     </div>
 

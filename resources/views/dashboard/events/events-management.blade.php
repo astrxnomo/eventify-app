@@ -28,7 +28,7 @@
                     @foreach ($events as $event)
                         @include('components.dashboard.event-card', [
                             'title' => $event->name,
-                            'category' => $event->category->name,
+                            'category' => $event->category ? $event->category->name : 'Sin categoría',
                             'image' => $event->img_url,
                             'location' => $event->location ? $event->location->country : 'Sin ubicación',
                             'date' => \Carbon\Carbon::parse($event->start_date)->format('d F Y'),
