@@ -22,11 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/*
-Route::apiResource('event', EventApiController::class);
-*/
-
-//API evetos
+//API eventos
 Route::get('event', [EventApiController::class, 'index']);
 Route::get('event/{id}', [EventApiController::class, 'show']);
 Route::post('event', [EventApiController::class, 'store']);
@@ -43,4 +39,3 @@ Route::delete('category/{id}', [CategoryApiController::class, 'destroy']);
 //otras APIs
 Route::apiResource('statuses',StatusApiController::class);
 Route::apiResource('locations',LocationApiController::class);
-//Route::apiResource('categories',CategoryApiController::class);

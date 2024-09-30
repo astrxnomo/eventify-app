@@ -5,15 +5,25 @@ document.getElementById('EventForm').addEventListener('submit', function(event) 
     let errors = [];
 
     // Obtener valores de los campos
-    const eventName = document.getElementById('eventName').value.trim();
-    const eventDescription = document.getElementById('eventDescription').value.trim();
-    const eventCategory = document.querySelector('input[name="eventCategory"]:checked');
-    const eventCountry = document.getElementById('eventCountry').value.trim();
-    const eventRegion = document.getElementById('eventRegion').value.trim();
-    const eventCity = document.getElementById('eventCity').value.trim();
-    const eventAddress = document.getElementById('eventAddress').value.trim();
-    const eventCapacity = document.getElementById('eventCapacity').value.trim();
-    const eventImage = document.getElementById('eventImage').value.trim();
+    const eventNameElement = document.getElementById('eventName');
+    const eventDescriptionElement = document.getElementById('eventDescription');
+    const eventCategoryElement = document.querySelector('input[name="eventCategory"]:checked');
+    const eventCountryElement = document.getElementById('eventCountry');
+    const eventRegionElement = document.getElementById('eventRegion');
+    const eventCityElement = document.getElementById('eventCity');
+    const eventAddressElement = document.getElementById('eventAddress');
+    const eventCapacityElement = document.getElementById('eventCapacity');
+    const eventImageElement = document.getElementById('eventImage');
+
+    const eventName = eventNameElement ? eventNameElement.value.trim() : '';
+    const eventDescription = eventDescriptionElement ? eventDescriptionElement.value.trim() : '';
+    const eventCategory = eventCategoryElement ? eventCategoryElement.value : '';
+    const eventCountry = eventCountryElement ? eventCountryElement.value.trim() : '';
+    const eventRegion = eventRegionElement ? eventRegionElement.value.trim() : '';
+    const eventCity = eventCityElement ? eventCityElement.value.trim() : '';
+    const eventAddress = eventAddressElement ? eventAddressElement.value.trim() : '';
+    const eventCapacity = eventCapacityElement ? eventCapacityElement.value.trim() : '';
+    const eventImage = eventImageElement ? eventImageElement.value.trim() : '';
 
     // Validar nombre del evento
     if (eventName.length < 5 || eventName.length > 100) {
@@ -92,7 +102,7 @@ function displayErrors(errors) {
         errorContainer.classList.add('alert', 'alert-danger', 'mt-3');
         form.insertAdjacentElement('afterbegin', errorContainer);
     }
-    
+
     errorContainer.innerHTML = ''; // Limpiar contenido previo
 
     // Agregar errores

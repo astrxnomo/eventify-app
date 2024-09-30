@@ -68,6 +68,19 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="eventRegion" class="form-label fs-6 mb-0">{{ __('Región') }}</label>
+                                                <input type="text" class="form-control" id="eventRegion" name="eventRegion"  value="{{$location['region']}}"required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-2">
+                                            <div class="col-md-6">
+                                                <label for="eventCity" class="form-label fs-6 mb-0">{{ __('Ciudad') }}</label>
+                                                <input type="text" class="form-control" id="eventCity" name="eventCity" value="{{$location['city']}}" required>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="eventAddress" class="form-label fs-6 mb-0">{{ __('Dirección') }}</label>
+                                                <input type="text" class="form-control" id="eventAddress" name="eventAddress" value="{{$location['address']}}" required>
                                             </div>
                                         </div>
                                         <div class="row mt-2">
