@@ -9,8 +9,8 @@ Eventify es una aplicación web que permite a los usuarios crear y promocionar e
 
 ## Tecnologías Utilizadas
 
-- **Backend:** Laravel
-- **Frontend:** Blade, JavaScript, Bootstrap 5
+- **Backend:** Laravel y MySQL
+- **Frontend:** Blade, JavaScript y Bootstrap 5
 - [**Microservicio:**](https://github.com/astrxnomo/microservice-eventify-app.git) React
 
 ## Desarrollado por:
@@ -22,7 +22,7 @@ Eventify es una aplicación web que permite a los usuarios crear y promocionar e
 ## Comandos requeridos para iniciar:
 
 ```bash
-# Actualizar dependencias de Composer
+# Descargar dependencias de Composer
 composer update
 
 # Generar la clave de la aplicación
