@@ -28,15 +28,11 @@ composer update
 # Generar la clave de la aplicación
 php artisan key:generate
 
-# Realizar migraciones y seeders de la base de datos
-php artisan migrate:fresh --seed
-
 # Crear enlace simbólico de almacenamiento
 php artisan storage:link
 
-# Dependencias adicionales
-composer require guzzlehttp/guzzle
-composer require barryvdh/laravel-dompdf
+# Realizar migraciones y seeders de la base de datos
+php artisan migrate:fresh --seed
 
 # Iniciar el servidor
 php artisan serve
