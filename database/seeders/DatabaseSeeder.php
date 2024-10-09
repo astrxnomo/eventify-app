@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Role;
-use App\Models\Event;
-use App\Models\Location;
+use App\Models\event;
+use App\Models\location;
 use App\Models\User;
 use App\Models\ticket;
 use Illuminate\Database\Seeder;
